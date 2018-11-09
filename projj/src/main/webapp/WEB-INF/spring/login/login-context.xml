@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+		
+		 <!-- Google 소셜 로그인 연결 설정 -->
+	<bean id = "googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<constructor-arg value="237740792936-tl289ejnb0oq06hej4omhbkvnui3l3nl.apps.googleusercontent.com"/>
+		<constructor-arg value="ZBYLHmGduG6-4Vfc23eLrkVk"/>    
+	</bean>
+ 
+	<bean id = "googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"></property>
+		<property name="redirectUri" value="http://localhost/kworld/login/google"/> 
+	</bean>
+
+	<!-- FaceBook 소셜 로그인 연결 설정 -->
+    <bean id="faceBookconnectionFactory" class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+        <constructor-arg value="309802326511610" />
+        <constructor-arg value="d1e22d02b887551eeec8516875907224" />
+    </bean>
+ 
+    <bean id="facebookOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+        <property name="scope" value="email" />
+        <property name="redirectUri" value="https://localhost/kworld/login/facebook" />
+    </bean>
+    
+   <!-- Naver 소셜 로그인 연결 설정  네아로  -->
+
+
+
+</beans>

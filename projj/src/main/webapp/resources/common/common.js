@@ -1,0 +1,5 @@
+/**
+ * 
+ */
+
+var ctxPath = "/kwold";

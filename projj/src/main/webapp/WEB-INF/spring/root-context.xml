@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- dataSource -->
+	<util:properties id="dataSourceConfig" location="classpath:/properties/dataSource.properties" />
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="#{dataSourceConfig['datasource.driverClassName']}" />
+		<property name="url" value="#{dataSourceConfig['datasource.url']}" />
+		<property name="username" value="#{dataSourceConfig['datasource.username']}" />
+		<property name="password" value="#{dataSourceConfig['datasource.password']}" />
+		<property name="initialSize" value="10" />
+		<property name="maxTotal" value="10" />
+		<property name="maxIdle" value="10" />
+		<property name="minIdle" value="10" />
+		<property name="maxWaitMillis" value="3000" />
+	</bean>
+	
+	<!-- mybatis sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
+		<property name="mapperLocations" 
+		value="classpath:mappers/**/*Mapper.xml"></property>
+	</bean>
+	
+	<!-- mybatis sqlSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" 
+		destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+ 	<!-- tiles xml 설정 파일 등록 -->
+	<bean id="tilesConfigurer"   class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+     <property name="definitions" value="/WEB-INF/spring/tiles/tiles-defs.xml"></property>
+   </bean>    
+    
+    <!--트랜잭션 처리  -->
+    <bean id="transactionManager" 
+    class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"></property>    
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+  	<context:component-scan base-package="org.web.kworld" use-default-filters="false">
+  		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+  		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+  		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+  	</context:component-scan>
+	
+	
+</beans>

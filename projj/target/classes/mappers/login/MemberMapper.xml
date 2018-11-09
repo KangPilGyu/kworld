@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="org.web.kworld.login.MemberMapper">
+	<insert id="insertMember">
+	insert into tbl_member(
+				m_name,
+				m_email,
+				m_pwd,
+				m_type,
+				m_token,
+				m_regdate,
+				m_mainaddr,
+				m_wuaddr,
+				m_detailaddr,
+				m_emailagree,
+				m_auth
+				)
+		values(
+				#{m_name},
+				#{m_email},
+				#{m_pwd},
+				#{m_type,jdbcType=VARCHAR},
+				#{m_token,jdbcType=VARCHAR},
+				#{m_regdate,jdbcType=VARCHAR},
+				#{m_mainaddr,jdbcType=VARCHAR},
+				#{m_wuaddr,jdbcType=VARCHAR},
+				#{m_detailaddr,jdbcType=VARCHAR},
+				#{m_emailagree,jdbcType=VARCHAR},
+				#{m_auth,jdbcType=VARCHAR}						
+						)
+	</insert>
+	
+	<select id="findEmail" resultType="int">
+	select count(m_email) 
+	from tbl_member
+	where m_email = #{m_email}
+	</select>
+	
+</mapper>
