@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.web.kworld.login.service.FaceBookLoginService;
 import org.web.kworld.login.service.GoogleLoginService;
 import org.web.kworld.login.service.NaverLoginService;
+import org.web.kworld.login.vo.MemberVO;
 
 @Controller
 @RequestMapping(value = "/login/*")
@@ -25,6 +28,7 @@ public class SnsLoginController {
 	private static final Logger logger = LoggerFactory.getLogger(SnsLoginController.class);
 	
 	private GoogleLoginService googleLoginService;	
+	
 	@Autowired
     public void setGoogleLoginService(GoogleLoginService googleLoginService) {
 		this.googleLoginService = googleLoginService;
@@ -41,35 +45,36 @@ public class SnsLoginController {
 	  public void setNaverLoginService(NaverLoginService naverLoginService) {
 		this.naverLoginService = naverLoginService;
 	}
-	
-
-    @RequestMapping(value = "/modal", method = { RequestMethod.GET, RequestMethod.POST })
-    public String loginModal(HttpServletResponse response, Model model, HttpSession session,
-    		@ModelAttribute("modalSwitch") String modalSwitch) {
-    	logger.info("login/modal 호출");
-    	
-    	String google_url = googleLoginService.getGoogleUrl();
-    	model.addAttribute("google_url",google_url);
-    	
-    	String facebook_url = facebookLoginService.getFaceBookUrl();
-    	model.addAttribute("facebook_url",facebook_url);
-    	
-    	String naver_url =naverLoginService.getNaverUrl(session);
-    	model.addAttribute("naver_url",naver_url);
-    	
-        return "login/login";
-    }
+	  @RequestMapping(value = "/login", method = { RequestMethod.GET})
+	    public String loginlogin(HttpServletResponse response, Model model, HttpSession session,
+	    		RedirectAttributes rttr
+	    		,HttpServletRequest request) {
+		 logger.info("login / login  호출");
+		  
+		  	String google_url = googleLoginService.getGoogleUrl();
+	    	model.addAttribute("google_url",google_url);
+	    	
+	    	String facebook_url = facebookLoginService.getFaceBookUrl();
+	    	model.addAttribute("facebook_url",facebook_url);
+	    	
+	    	String naver_url =naverLoginService.getNaverUrl(session);
+	    	model.addAttribute("naver_url",naver_url);
+		  
+	        return "login.login";
+	    }
     // ------------------------------------ 구글 콜백 ----------------------------------------
-    @RequestMapping(value = "/google", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "/google", method = { RequestMethod.GET })
     public String doSessionAssignActionPageGoogle(
-    		@RequestParam("code") String code,
+    		@RequestParam(value="code",required=false) String code,
+    		Model model,
     		HttpServletRequest request) throws Exception {
     	
-    	logger.info("구글 콜백 호출~~~");
+    	
+    	logger.info("구글 콜백 호출~~~"+code);
     	googleLoginService.makeAccessToken(code);
-        googleLoginService.getUserProfile();
-        googleLoginService.closeToken();
-        
+        MemberVO member = googleLoginService.getUserProfile();
+           
+        model.addAttribute("member",member);
         return "login/loginSuccess";
     }
     
@@ -85,9 +90,10 @@ public class SnsLoginController {
     // ------------------------------------ 네이버 콜백 ----------------------------------------
     @RequestMapping(value = "/naver", method = { RequestMethod.GET, RequestMethod.POST })
     public String doSessionAssignActionPageNaver(
-    		@RequestParam("code") String code,
+    		@RequestParam(value="code", required=false) String code,
     		@RequestParam String state, 
     		HttpSession session, Model model) throws Exception {
+ 
         //네이버 정보 가져오기 처리
     	logger.info("네이버 콜백 호출~~~");
     	// make 토큰

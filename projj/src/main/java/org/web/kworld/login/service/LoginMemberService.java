@@ -40,7 +40,13 @@ public class LoginMemberService {
 		// 4. email 발송
 		emailService.authNumSend(member);
 	}
-	
+	public void insertSNSMember(MemberVO member) {
+		try {
+			memberDAO.insertMember(member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
 	public boolean hasEmail(String m_email) {
 		boolean result=false;
 		try {
@@ -50,5 +56,65 @@ public class LoginMemberService {
 		}
 		return result;
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	public int searchAuthnum(String authnum) {
+		int result=-1;
+		try {
+			result=memberDAO.findAuthnum(authnum);
+			if(result>0)
+				memberDAO.updateAuth(authnum);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public String searchMember(String m_email,String m_pwd) {
+		String msg=null;
+		try {
+			MemberVO memberVO = memberDAO.selectMember(m_email, m_pwd);
+			if(memberVO==null)
+				msg="needAuth";
+			else if(!passwordEncoder.matches( m_pwd, memberVO.getM_pwd()))
+				msg = "pwdMismatch";
+			else
+				msg="success";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return msg;
+		
+	}
+	public boolean hasSNSMember(String m_email,String m_type) {
+		boolean result=false;
+		try {
+			if(memberDAO.selectSNSMember(m_email)!=null)
+				result=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public void updateSNS(MemberVO vo) {
+		try {
+			memberDAO.updateSNS(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	public MemberVO selectSNSMember(String m_email) {
+		MemberVO vo = null;
+		try {
+			vo=memberDAO.selectSNSMember(m_email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+	
 	
 }

@@ -5,7 +5,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.api.impl.GoogleTemplate;
 import org.springframework.social.google.api.plus.Person;
@@ -16,10 +19,16 @@ import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
+import org.web.kworld.login.vo.MemberVO;
 
 @Service
 public class GoogleLoginService {
 	// 구글 로그인 서비스
+	@Inject
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Inject
+	private LoginMemberService loginMemberService;
 	
     private GoogleConnectionFactory googleConnectionFactory;
     private OAuth2Parameters googleOAuth2Parameters;
@@ -35,7 +44,7 @@ public class GoogleLoginService {
 	public void setGoogleOAuth2Parameters(OAuth2Parameters googleOAuth2Parameters) {
 		this.googleOAuth2Parameters = googleOAuth2Parameters;
 	}
-
+    
 	private OAuth2Operations oauthOperations;
     
     public String getGoogleUrl() {
@@ -62,18 +71,31 @@ public class GoogleLoginService {
          this.accessToken=accessToken;
          
     }
-    public void getUserProfile() {	
+    public MemberVO getUserProfile() {	
     	 // oauth 사용한 api 사용
         org.springframework.social.connect.Connection<Google> connection = googleConnectionFactory.createConnection(this.accessGrant);
         Google google = connection == null ? new GoogleTemplate(this.accessToken) : connection.getApi();
         
         PlusOperations plusOperations = google.plusOperations();
         Person profile = plusOperations.getGoogleProfile();
-        System.out.println(profile.getAccountEmail());
-        System.out.println(profile.getGender());
-        System.out.println("User Uid : " + profile.getId());
-        System.out.println("User Name : " + profile.getDisplayName());
-        System.out.println("User Profile : " + profile.getImageUrl()); 
+        
+        MemberVO member= new MemberVO();
+        member.setM_token(accessToken);
+        member.setM_email(profile.getAccountEmail());
+        member.setM_name(profile.getDisplayName());
+        member.setM_type("구글");
+        member.setM_auth("USER");
+        member.setM_pwd(passwordEncoder.encode(accessToken));
+        
+        if(loginMemberService.hasEmail(member.getM_email())) {
+        	loginMemberService.updateSNS(member);
+        	member=loginMemberService.selectSNSMember(member.getM_email());
+        }else {
+        	loginMemberService.insertSNSMember(member); 
+        	member.setM_pwd(accessToken);
+        }
+        
+        return member;
    }
     
     public void closeToken() {

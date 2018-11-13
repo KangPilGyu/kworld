@@ -1,13 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix= "c" uri= "http://java.sun.com/jsp/jstl/core" %>
- 
  <script>
  function openWindows(url){
 	 var win = window.open(url,'login',"width=500px, height=500px, top=200px, left=200px");
  }
+ function setCookie(name,value,expiredays){
+	 var d = new Date();
+	 d.setTime(d.getTime()+(expiredays*24*60*60*1000));
+	 var expires = "expires="+d.toGMTString();
+	 document.cookie = name+"="+value+";"+expires+"; Path=/";
+ } 
+ function snsSubmit(){
+	 alert("콜됨");
+	 $("#snsform").attr("action","/j_spring_security_check");
+	 $("#snsform").attr("method","post");
+	 $("#snsform").submit();
+	 alert("실행됨");
+ }
+ 
+ $(document).ready(function(){
+	 
+	 $("#formlogin").submit(function(){
+				
+		var emailExist;
+		var v_email=$("#inputEmail").val();
+			// 동기 방식으로 이메일 검사 코드
+			$.ajax({
+				method:"POST",
+				datatype: "text",
+				data:{"m_email" : v_email},
+				url:"/login/hasmail",
+				async:false,
+				success: function(data, textStatus, jqXHR ){
+					emailExist=data;	
+				}		
+			});
+			
+			if(emailExist=="none"){
+				alert("이메일이 존재하지 않습니다~~");
+				event.preventDefault();	
+				return;
+			}
+			
+			var msg;
+			$.ajax({
+				method:"POST",
+				datatype: "text",
+				data:{"m_email" : v_email,"m_pwd":$("#inputPassword").val()},
+				url:"/login/loginCk",
+				async:false,
+				success: function(data, textStatus, jqXHR ){
+					msg=data;	
+				}		
+			});
+			
+			if(msg=="success"){
+				alert("로그인 성공하셨습니다.");
+				 $("form").attr("action","/j_spring_security_check");
+				 $("form").attr("method","post");
+				 
+				 if($("#remember").is(":checked")){
+					 setCookie(id,$("#inputEmail"),30);
+					 setCookie(pwd,$("#inputPassword"),30);
+				 }
+			}
+			else if(msg=="needAuth"){
+				alert("이메일 인증이 필요합니다.");
+				event.preventDefault();	
+				return;		
+			}
+			else if(msg=="pwdMismatch"){
+				alert("비밀번호가 일치하지 않습니다.");
+				event.preventDefault();	
+				return;		
+			}
+				 
+	 });
+	 
+ }); 
  </script>   
-    
+ 
+ <form id="snsform" action="/j_spring_security_check" method="post">
+ 	<input type="hidden" name="m_email" id="snsemail" value="">
+ 	<input type="hidden" name="m_pwd" id="snspwd" value="">
+ </form>
+
 <div class="modal-dialog"> 
       <!-- Modal content-->
  <div class="modal-content">
@@ -20,16 +98,16 @@
         </div>
         
         <div class="modal-body">
-          <form class="form-signin">  
+          <form class="form-signin" id="formlogin">  
         <h2 class="form-signin-heading"></h2>
         <label for="inputEmail" class="sr-only">이메일 주소</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input name="m_email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
         <label for="inputPassword" class="sr-only">비밀번호</label>
-        <input  type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input  name="m_pwd" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+            <input id="remember" type="checkbox" value="remember-me"> Remember me
+          </label> 
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
        	 <br>
