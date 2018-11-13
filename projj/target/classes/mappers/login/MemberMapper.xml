@@ -16,12 +16,13 @@
 				m_wuaddr,
 				m_detailaddr,
 				m_emailagree,
-				m_auth
+				m_auth,
+				m_authnum
 				)
 		values(
 				#{m_name},
 				#{m_email},
-				#{m_pwd},
+				#{m_pwd,jdbcType=VARCHAR},
 				#{m_type,jdbcType=VARCHAR},
 				#{m_token,jdbcType=VARCHAR},
 				#{m_regdate,jdbcType=VARCHAR},
@@ -29,7 +30,8 @@
 				#{m_wuaddr,jdbcType=VARCHAR},
 				#{m_detailaddr,jdbcType=VARCHAR},
 				#{m_emailagree,jdbcType=VARCHAR},
-				#{m_auth,jdbcType=VARCHAR}						
+				#{m_auth,jdbcType=VARCHAR},
+				#{m_authnum}						
 						)
 	</insert>
 	
@@ -38,5 +40,37 @@
 	from tbl_member
 	where m_email = #{m_email}
 	</select>
+	
+	<select id="findAuthnum" resultType="int">
+	select count(m_authnum) 
+	from tbl_member
+	where m_authnum = #{authnum}
+	</select>
+	
+	<update id="updateAuth">
+	update tbl_member
+	set m_auth = 'USER'
+	where m_authnum = #{authnum}
+	</update>
+	
+	<select id="selectMember" resultType="org.web.kworld.login.vo.MemberVO">
+	select *
+	from tbl_member
+	where m_email = #{m_email} and m_auth is not null
+	</select>
+	
+	<select id="selectSNSMember" resultType="org.web.kworld.login.vo.MemberVO">
+	select * 
+	from tbl_member
+	where m_email = #{m_email}
+	</select>
+	
+	<update id="updateSNS">
+	update tbl_member 
+	set m_type = #{m_type},
+		  m_token = #{m_token},
+		  m_auth = #{m_auth}
+	where m_email = #{m_email}
+	</update> 
 	
 </mapper>

@@ -13,19 +13,25 @@
 	<!-- 시큐리티 url 설정 부분 -->	
 	<sec:http pattern="/resources/**" security="none" />
 	
-	<sec:http use-expressions="true">
-		<sec:intercept-url pattern="/board/**" access="isAuthenticated()"/>
-		<sec:form-login login-page="/login/login"/>
+	<sec:http use-expressions="true" >
+		<sec:intercept-url pattern="/board/**" access="hasAuthority('USER')"/>
+		<sec:intercept-url pattern="/login/google" access="permitAll"/>
+		<sec:form-login login-page="/login/login" 
+			username-parameter="m_email"
+		  password-parameter="m_pwd"  default-target-url="/"
+		  always-use-default-target="true"/>
 		<sec:logout/>
 	</sec:http>
 	
 	
-	
 	<sec:authentication-manager alias="authenticationManager">
-		<sec:authentication-provider>
-			<sec:jdbc-user-service data-source-ref="dataSource"/>
+		<sec:authentication-provider >
+			<sec:jdbc-user-service data-source-ref="dataSource" 
+			authorities-by-username-query="select m_email,m_auth from tbl_member where m_email=?"
+			users-by-username-query="select m_email,m_pwd,'true' from tbl_member where m_email=?"/>
 			<sec:password-encoder ref="passwordEncoder"></sec:password-encoder>
 		</sec:authentication-provider>
+
 	</sec:authentication-manager>
 	
 	

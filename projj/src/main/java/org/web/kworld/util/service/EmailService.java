@@ -25,7 +25,7 @@ public class EmailService {
 			sendMail.setText(
 					new StringBuffer().append("<h1>이메일 인증 </h1>")
 												.append("<span>"+member.getM_name()+"의 가입을 환영합니다. 이메일 인증 부탁드립니다.</span>")
-												.append("<a href='http://localhost/login/authEmail/token="+member.getM_authnum()+"'>이메일 인증 확인</a>").toString());
+												.append("<a href='http://localhost/login/auth/"+member.getM_authnum()+"'>이메일 인증 확인</a>").toString());
 			sendMail.setFrom("eiffeltop@nate.com", "Kworld 주인장");
 			sendMail.setTo(member.getM_email());
 			sendMail.send();

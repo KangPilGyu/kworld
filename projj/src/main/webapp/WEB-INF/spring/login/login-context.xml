@@ -13,7 +13,7 @@
  
 	<bean id = "googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
 		<property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"></property>
-		<property name="redirectUri" value="http://localhost/kworld/login/google"/> 
+		<property name="redirectUri" value="http://localhost/login/google"/> 
 	</bean>
 
 	<!-- FaceBook 소셜 로그인 연결 설정 -->
@@ -24,7 +24,7 @@
  
     <bean id="facebookOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
         <property name="scope" value="email" />
-        <property name="redirectUri" value="https://localhost/kworld/login/facebook" />
+        <property name="redirectUri" value="https://localhost/login/facebook" />
     </bean>
     
    <!-- Naver 소셜 로그인 연결 설정  네아로  -->

@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,24 +66,27 @@ public class LoginController {
 		
 		return "login.welcome";
 	}
+	// 회원 가입 인증 처리 페이지
+	@RequestMapping(value="/auth/{authnum}", method = RequestMethod.GET )
+	public String joinAuth(@PathVariable("authnum") String authnum,
+			Model model) {
+		logger.info("회원 가입 인증 처리 페이지");
+				
+		int result = loginMemberService.searchAuthnum(authnum);
+		if(result>0)
+			model.addAttribute("msg","success");
+		else
+			model.addAttribute("msg","false");
+		
+		
+		return "login/authFind";
+	}
 	
-	  @RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
-	    public String loginlogin(HttpServletResponse response, Model model, HttpSession session,
-	    		RedirectAttributes rttr
-	    		,HttpServletRequest request) {
-		  	//이전 url 설정
-	    	String url = request.getHeader("referer");
-	    	String domain = request.getScheme()+"://"+request.getServerName();
-	    	
-	    	if(url.indexOf("?")!=-1)
-	    		url=url.substring(0,url.indexOf("?"));
-	    	url=url.replace(domain+"/", "");
-	    	
-	    	rttr.addAttribute("modalSwitch",1);
-	    	    	
-	        return "redirect:/"+url;
-	    }
-	
+	  @ResponseBody
+	  @RequestMapping(value = "/loginCk", method = { RequestMethod.POST })
+	  public String loginCk(String m_email, String m_pwd) {
+		  return loginMemberService.searchMember(m_email, m_pwd);
+	  }
 
-	
+  		
 }

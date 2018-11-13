@@ -1,19 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <script>
-$(document).ready(function(){
-
-		$.ajax({
-			method:"POST",
-			datatype: "html",
-			url:"/login/modal?modalSwitch=${param.modalSwitch}",
-			success: function(data, textStatus, jqXHR ){
-				$("#loginModal").html(data);
-				if("${param.modalSwitch}"=="1")
-					$("#loginbtn").click(); 
-			}
-		});
-		
+$(document).ready(function(){		
 		//nav 상태 유지
 		var path="${requestScope['javax.servlet.forward.request_uri']}";
 		$("#navv li").each(function(){
@@ -25,12 +14,7 @@ $(document).ready(function(){
 				$( this ).addClass( "active" );
 			}
 		});
-		
-		$("#loginModal").on('hidden.bs.modal',function(){
-			$("#needLogin").remove();
-		});
-		
-		
+				
 });
 </script>
 
@@ -52,19 +36,15 @@ $(document).ready(function(){
         <li><a href="${pageContext.request.contextPath}/board/">Board</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a id="loginbtn" href="#"  data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <sec:authorize access="isAuthenticated()">
+      <li><a id="logoutbtn" href="" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </sec:authorize>
+      <sec:authorize access="isAuthenticated()">
+        <li><a id="loginbtn" href="/login/login" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+     </sec:authorize>
       </ul>
     </div>
   </div>
 </nav>
 
-
-<!-- Login ----------  Modal -->
-  <div class="modal fade" id="loginModal" role="dialog" class="modal-dialog modal-sm">
-   
-        
-   
-      </div>
-        
-        
 
