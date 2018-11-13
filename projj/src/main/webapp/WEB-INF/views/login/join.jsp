@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+https://github.com/stefanerickson/covervid/blob/gh-pages/covervid.min.js
 <script>
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr,jibunAddr,zipNo){
 	$("#addr1").val(roadAddrPart1+" "+roadAddrPart2.replace(", ",",")); // 도로명 주소
@@ -83,11 +84,12 @@ $(document).ready(function(){
 </script>
 
 <div class="row" style="height:50px"></div>
-      <article class="container">
-        <div class="page-header" style="text-align: center">
+ 
+      <article class="container" style="color:white">
+        <div class="page-header col-md-6 col-md-offset-3" style="text-align: center">
           <h1>회원 가입 </h1>
         </div>
-        
+    
         <div class="col-md-6 col-md-offset-3">
           <form role="form" method="post" id="formjoin">
               <div class="form-group">
@@ -120,7 +122,7 @@ $(document).ready(function(){
             </div>
             
     
-            <div class="form-group">
+           <!--  <div class="form-group">
                 <label>약관 동의</label>
               <div data-toggle="buttons">
               <label class="btn btn-primary">
@@ -129,7 +131,7 @@ $(document).ready(function(){
               </label>
               <a href="#">이용약관</a>에 동의합니다.
               </div>
-            </div>
+            </div> -->
             
             <div class="form-group text-center">
               <button type="submit" class="btn btn-info">회원가입<i class="fa fa-check spaceLeft"></i></button>

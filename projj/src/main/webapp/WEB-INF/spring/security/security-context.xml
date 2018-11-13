@@ -20,7 +20,7 @@
 			username-parameter="m_email"
 		  password-parameter="m_pwd"  default-target-url="/"
 		  always-use-default-target="true"/>
-		<sec:logout/>
+		<sec:logout logout-url="/login/logout" logout-success-url="/"/>
 	</sec:http>
 	
 	
@@ -28,7 +28,7 @@
 		<sec:authentication-provider >
 			<sec:jdbc-user-service data-source-ref="dataSource" 
 			authorities-by-username-query="select m_email,m_auth from tbl_member where m_email=?"
-			users-by-username-query="select m_email,m_pwd,'true' from tbl_member where m_email=?"/>
+			users-by-username-query="select m_email,m_pwd,'true' from tbl_member where m_email=?"/>	
 			<sec:password-encoder ref="passwordEncoder"></sec:password-encoder>
 		</sec:authentication-provider>
 

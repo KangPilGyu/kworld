@@ -1,5 +1,7 @@
 package org.web.kworld.login.controller;
 
+import java.security.Principal;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,6 +88,11 @@ public class LoginController {
 	  @RequestMapping(value = "/loginCk", method = { RequestMethod.POST })
 	  public String loginCk(String m_email, String m_pwd) {
 		  return loginMemberService.searchMember(m_email, m_pwd);
+	  }
+	  
+	  @RequestMapping(value = "/logout", method = { RequestMethod.GET })
+	  public void logout(Model model) {
+		  logger.info("로그아웃 호출...");		  
 	  }
 
   		
