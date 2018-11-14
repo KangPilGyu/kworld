@@ -22,11 +22,27 @@
    </definition>
 
 	<!-- join tiles 설정 -->
-   <definition name="login.*" template="/WEB-INF/views/board/layout.jsp">
+   <definition name="login.*" template="/WEB-INF/views/login/layout.jsp">
    	  <put-attribute name="common" value="/WEB-INF/views/inc/common.jsp"></put-attribute>
       <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"></put-attribute>
       <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
       <put-attribute name="content" value="/WEB-INF/views/login/{1}.jsp"></put-attribute>
+   </definition>
+   
+    <!--blog tiles 설정 -->
+   <definition name="blog.*" template="/WEB-INF/views/blog/layout.jsp">
+      <put-attribute name="common" value="/WEB-INF/views/inc/common.jsp"></put-attribute>
+      <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"></put-attribute>
+      <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
+      <put-attribute name="content" value="/WEB-INF/views/blog/{1}.jsp"></put-attribute>
+   </definition>
+   
+     <!--blog tiles 설정 -->
+   <definition name="notice.*" template="/WEB-INF/views/notice/layout.jsp">
+      <put-attribute name="common" value="/WEB-INF/views/inc/common.jsp"></put-attribute>
+      <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"></put-attribute>
+      <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
+      <put-attribute name="content" value="/WEB-INF/views/notice/{1}.jsp"></put-attribute>
    </definition>
     
 </tiles-definitions>

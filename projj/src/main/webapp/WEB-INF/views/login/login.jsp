@@ -85,12 +85,13 @@
  	<input type="hidden" name="m_email" id="snsemail" value="">
  	<input type="hidden" name="m_pwd" id="snspwd" value="">
  </form>
+ 
+<div class="row" style="height:50px"></div>
 
-<div class="modal-dialog"> 
+<div class="modal-dialog modal-sm" > 
       <!-- Modal content-->
  <div class="modal-content">
         <div class="modal-header">
-          <button id="closeBtn" type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">로그인</h4>
           <c:if test="${param.modalSwitch eq '1'}">
           <span id="needLogin" style='color:red'>로그인이 필요합니다....</span>
