@@ -36,12 +36,13 @@ $(document).ready(function(){
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul id="navv"  class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="#">Projects</a></li>
+        <li><a href="/blog/main">Blog</a></li>
+        <li><a href="/notice/main">Notice</a></li>
         <li><a href="${pageContext.request.contextPath}/board/">Board</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <sec:authorize access="isAuthenticated()">
+		<li><a><sec:authentication property="principal.m_name"/>님 환영합니다!</a></li>
       	<li><a id="logoutbtn" href="#" onclick="fn_logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </sec:authorize>
       <sec:authorize access="isAnonymous()">

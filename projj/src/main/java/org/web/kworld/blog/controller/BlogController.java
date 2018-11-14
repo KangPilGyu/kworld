@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/blog/*")
+@RequestMapping(value = "/blog/*")
 public class BlogController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 	
-	@RequestMapping(value="")
+	@RequestMapping(value="/main")
 	public String blogmain() {
 		logger.info("blog main 페이지 호출");
 		return "blog.main";
