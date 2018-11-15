@@ -28,12 +28,15 @@
    	</beans:bean>
 	
 	<!-- basic jspView 설정 부분 -->
+	<!--  -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="order" value="2"></beans:property>
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- @controller scan 설정
+	빈객체 안만들어도 됨 . 하위 패키지 전체는 -> 하위 폴더를 다 스캔해서 @ 있는 controller 빈객체만들겠다 -->
 	<context:component-scan base-package="org.web.kworld" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>

@@ -39,10 +39,10 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
- 	<!-- tiles xml 설정 파일 등록 -->
-	<bean id="tilesConfigurer"   class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+  	<!-- tiles xml 설정 파일 등록 -->
+< 	<bean id="tilesConfigurer"   class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
      <property name="definitions" value="/WEB-INF/spring/tiles/tiles-defs.xml"></property>
-   </bean>    
+   </bean>     
     
     <!--트랜잭션 처리  -->
     <bean id="transactionManager" 

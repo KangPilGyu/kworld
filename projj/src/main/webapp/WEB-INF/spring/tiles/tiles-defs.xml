@@ -44,5 +44,16 @@
       <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
       <put-attribute name="content" value="/WEB-INF/views/notice/{1}.jsp"></put-attribute>
    </definition>
+   
+   
+    <definition name="news.*" template="/WEB-INF/views/news/layout.jsp">
+      <put-attribute name="common" value="/WEB-INF/views/inc/common.jsp"></put-attribute>
+      <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"></put-attribute>
+      <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
+      <put-attribute name="content" value="/WEB-INF/views/news/{1}.jsp"></put-attribute>
+   </definition>
+   
+   
+   
     
 </tiles-definitions>

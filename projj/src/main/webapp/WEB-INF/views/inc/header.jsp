@@ -39,6 +39,7 @@ $(document).ready(function(){
         <li><a href="/blog/main">Blog</a></li>
         <li><a href="/notice/main">Notice</a></li>
         <li><a href="${pageContext.request.contextPath}/board/">Board</a></li>
+        <li><a href="/news/main">News</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <sec:authorize access="isAuthenticated()">
