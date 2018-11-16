@@ -5,7 +5,7 @@ import java.util.Date;
 public class NewsVO {
 	
 	
-		   private int n_no;
+			private int n_no;
 		    private String n_title;
 		    private String n_writer;
 		    private Date n_regdate;
