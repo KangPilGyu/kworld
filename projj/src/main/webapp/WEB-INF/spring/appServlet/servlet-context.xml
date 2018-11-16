@@ -26,6 +26,8 @@
    		<beans:property name="order" value="1"></beans:property>
      	<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
    	</beans:bean>
+   	
+	
 	
 	<!-- basic jspView 설정 부분 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

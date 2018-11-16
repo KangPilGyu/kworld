@@ -6,9 +6,7 @@
 <div class="container">
  <form method="post">
       <div class="row">
-     
-
-        <!-- Post Content Column -->
+             <!-- Post Content Column -->
         <div class="col-lg-8">
           <!-- Title -->
           <h1 class="mt-4">

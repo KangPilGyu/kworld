@@ -1,55 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<script>
+function fn_deleteSubmit(){
+	var con = confirm("정말로 삭제하시겠습니까???");
+	if(con){
+		$("form").attr("action","/notice/delete/${notice.n_no}")
+		.submit();
+	}
+}
+</script>
 
 <div class="row" style="height: 50px"></div>
 <div class="container">
 
       <div class="row">
-
         <!-- Post Content Column -->
         <div class="col-lg-8">
-
           <!-- Title -->
-          <h1 class="mt-4">Post Title</h1>
-
+          <h1 class="mt-4">${notice.n_title}
+          <sec:authorize access="isAuthenticated()">
+          <c:set var="id"><sec:authentication property="principal.m_id" /></c:set>
+          <c:if test="${notice.m_id eq id}">
+          	<a href="/notice/update/${notice.n_no}"><button class="btn btn-primary">수정</button></a>
+          	<button class="btn btn-danger" onclick="fn_deleteSubmit()">삭제</button>
+        </c:if>
+        </sec:authorize>
+          </h1>
           <!-- Author -->
           <p class="lead">
             by
-            <a href="#">Start Bootstrap</a>
+            <a href="#">${notice.n_writer}</a>
           </p>
-
           <hr>
-
           <!-- Date/Time -->
-          <p>Posted on January 1, 2018 at 12:00 PM</p>
-
+          <p>Posted on <fmt:formatDate value="${notice.n_regdate}" pattern="YYYY-MM-dd E HH:mm:ss"/>
+          <span style="float: right;">Click : ${notice.n_cnt}        Recommend: ${notice.n_fav}</span>
+          </p>
+           <c:if test="${notice.n_updatedate != null}">
+          <p>Last Update <fmt:formatDate value="${notice.n_updatedate}" pattern="YYYY-MM-dd E HH:mm:ss"/>
+          </p>
+          </c:if>
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="이미지 없음">
 
           <hr>
 
           <!-- Post Content -->
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-          <blockquote class="blockquote">
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in
-              <cite title="Source Title">Source Title</cite>
-            </footer>
-          </blockquote>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
+          <div class="postContent" >
+          ${notice.n_content}
+          </div>
           <hr>
-
+          
           <!-- Comments Form -->
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>

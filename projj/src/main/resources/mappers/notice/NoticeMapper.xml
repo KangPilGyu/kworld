@@ -4,6 +4,26 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="org.web.kworld.notice.NoticeMapper">
+
+<select id="selectNoticeList" resultType="org.web.kworld.notice.vo.NoticeVO">
+select *
+from notice
+order by n_no desc
+limit #{pageStart}, #{perPageNum}
+</select>
+
+<select id="countNotice" resultType="int">
+select count(*)
+from notice
+</select>
+
+
+<select id="selectNotice" resultType="org.web.kworld.notice.vo.NoticeVO">
+select *
+from notice
+where n_no = #{n_no}
+</select>
+
 <insert id="insertNotice">
 insert into notice (
 	n_title,
@@ -18,5 +38,24 @@ values (
     #{m_id} )
     
 </insert>
+
+<update id="updateCnt">
+update notice
+set n_cnt = n_cnt+1 
+where n_no = #{n_no}
+</update>
+
+<update id="updateNotice">
+update notice
+set n_title = #{n_title}, n_content = #{n_content}
+where n_no = #{n_no}
+</update>
+
+<delete id="deleteNotice">
+delete from notice
+where n_no = #{n_no}
+</delete>
+
+
 
 </mapper>
