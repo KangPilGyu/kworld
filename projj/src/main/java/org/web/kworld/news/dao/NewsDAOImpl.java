@@ -15,8 +15,17 @@ public class NewsDAOImpl implements NewsDAO{
 	
 	@Inject//주입
 	private SqlSession sqlSession;
+	
 	//org.web.kworld.news.NewsMapper.selectNews
 	
+	public SqlSession getSqlSession() {
+		return sqlSession;
+	}
+
+	public void setSqlSession(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+
 	private static final String NAMESPACE="org.web.kworld.news.NewsMapper";
 
 	@Override

@@ -21,24 +21,26 @@ public class TestMemberDAO {
 	private SqlSession sqlSession;
 	
 	@Inject
-	private NewsDAO newsDAO;
-	/*	
+	private NewsDAO newsDAO = null;
+
 	@Test
 	public void testInsert() throws Exception{
 		System.out.println(sqlSession);
-		System.out.println(newsDAO);}
+		System.out.println(">>> " + newsDAO);
+		newsDAO.selectNews();
+    }
 
 	@Test
 	public void testFindEmail() throws Exception{
 			sqlSession.selectList("org.web.kworld.news.NewsMapper.selectNews");
 	}
-	*/
+
 	
 	
 	@Test
 	public void testFindEmail1() throws Exception{
 		
-		newsDAO.selectNews();
+		//newsDAO.selectNews();
 		
 	}
 }

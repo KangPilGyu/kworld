@@ -38,11 +38,15 @@
 		destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
-	
+	<!-- 
+	<bean id="newsDAOImpl" class="org.web.kworld.news.dao.NewsDAOImpl">
+	  <property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	 -->
 	<!-- tiles xml 설정 파일 등록 -->
-	<bean id="tilesConfigurer"   class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+<!-- 	<bean id="tilesConfigurer"   class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
      <property name="definitions" value="/WEB-INF/spring/tiles/tiles-defs.xml"></property>
-   </bean>     
+   </bean>  -->     
 	
     
     
