@@ -37,7 +37,7 @@ where n_no = #{n_no}
 
 <insert id="newsInsert">
 insert into news (n_no,n_title,n_content,n_content2)
-values #{n_no},#{n_title},#{n_content},#{n_content2}
+values (#{n_no},#{n_title},#{n_content},#{n_content2})
 </insert>
 
 </mapper>

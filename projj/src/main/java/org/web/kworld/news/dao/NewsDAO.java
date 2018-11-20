@@ -18,4 +18,6 @@ public interface NewsDAO {
 	
 	public void updateNews(NewsVO vo) throws Exception;
 	
+	public void newsInsert(NewsVO vo) throws Exception;
+	
 }

@@ -45,27 +45,26 @@ public class NewsController {
 	}
 	
 	
-	@RequestMapping(value="/reg", method=RequestMethod.GET)//news/main
+/*	@RequestMapping(value="/reg", method=RequestMethod.GET)//news/main
 	public String newsReg(Model model){
 		model.addAttribute("list", newsService.selectList());
 		logger.info("news Reg 페이지 호출");
 		return"news.reg";
 	
-	}
+	}*/
 	
 	
 
-	@RequestMapping(value="/rev", method=RequestMethod.GET)//news/main
+	
+	//update 작업. 그냥 홈페이지 불러오는것
+	@RequestMapping(value="/rev/{n_no}", method=RequestMethod.GET)//news/main
 	public String newsRev(Model model){
 		model.addAttribute("list", newsService.selectList());
 		logger.info("news Rev 페이지 호출");
 		return"news.rev";
-	
-	}
-	
-		
-	
-	@RequestMapping(value="/rev", method=RequestMethod.POST)//news/main
+		}
+	//form태그에 들어있는거 POST 방식으로 보낸다
+	@RequestMapping(value="/rev/{n_no}", method=RequestMethod.POST)//news/main
 	public String newsUpdate(NewsVO vo){
 		logger.info("news Rev post 페이지 호출"+vo.getN_no()+vo.getN_content());
 		newsService.updateNews(vo);
@@ -73,5 +72,23 @@ public class NewsController {
 	}
 	
 
+	
+	
+	
+	@RequestMapping(value="/reg", method=RequestMethod.GET)//news/main
+	public String newsReg(Model model){
+		model.addAttribute("list", newsService.selectList());
+		logger.info("news Reg 페이지 호출");
+		return"news.reg";
+	}
+	@RequestMapping(value="/reg", method=RequestMethod.POST)//news/main
+	public String newsInsert(NewsVO vo){
+		logger.info("news Insert post 페이지 호출"+vo.getN_no()+vo.getN_content());
+		newsService.newsInsert(vo);
+		return"redirect:/news/main";
+	}
+	
+	
+	
 	
 }

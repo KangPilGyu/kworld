@@ -75,4 +75,14 @@ public class NewsService {
 	}
 	
 	
+	
+	
+	public void newsInsert(NewsVO vo){
+		try {
+			newsDAO.newsInsert(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

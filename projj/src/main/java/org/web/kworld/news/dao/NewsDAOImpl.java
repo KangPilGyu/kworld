@@ -58,6 +58,12 @@ public class NewsDAOImpl implements NewsDAO{
 		sqlSession.update(NAMESPACE+".updateNews");
 		
 	}
+
+	@Override
+	public void newsInsert(NewsVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE+".newsInsert",vo);
+		
+	}
 	
 	
 	

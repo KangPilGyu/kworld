@@ -21,16 +21,18 @@
           </a>
         </div>
         <div class="col-md-5">
-          <h3>${news.n_title }</h3>
+          <h3>${news.n_title}</h3>
           <p>${news.n_content}</p>
-          <a class="btn btn-primary" href="/news/detail/${news.n_no}">View Project</a>
+          
+          <a class="btn btn-primary" href="/news/detail/${news.n_no}">보기</a>
         </div>
       </div>
+     
       <!-- /.row -->
       <hr>
 </c:forEach>
-
-     
+ <a href="/news/reg"><button type="button" class="btn btn-primary">게시글 등록</button></a>
+    
 
       <!-- Pagination -->
       <ul class="pagination justify-content-center">

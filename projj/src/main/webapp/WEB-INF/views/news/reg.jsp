@@ -7,55 +7,47 @@
   <div class="row" style="height: 50px"></div>
   
 <br/>
-  
+    <form method="post">
  <!-- Page Content -->
     <div class="container">
       <div class="row">
-
         <!-- Post Content Column -->
         <div class="col-lg-8">
-<a href="/news/detail"><button type="button" class="btn btn-primary"  >등록완료</button></a>
-<br/>
+	<button type="submit" class="btn btn-primary">등록완료</button>
+		<br/>
           <!-- Title -->
           <br/>
-          <c:forEach items="${ list}" var="news" >
-         <input class="mt-4" type="text"  style="width : 300px; height : 50px;" />
-
+         <input name="n_title" class="mt-4" type="text"  style="width : 300px; height : 50px;" />
           <!-- Author -->
           <p class="lead">
             by
-            <a href="#">${news.n_writer }</a>
+           <input type="text" />
           </p>
-
           <hr>
-
           <!-- Date/Time -->
-          <p>${news.n_regdate }</p>
-
+          <p></p>
           <hr>
-
           <!-- Preview Image -->
           <img class="img-fluid rounded" src="/views/news/1.jpg" alt="">
 
           <hr>
 
           <!-- Post Content -->
-          <input class="lead" style="width : 750px; height : 100px; " />
+          <input name="n_content2" class="lead" style="width : 750px; height : 100px;"/>
 
-          <input type="text" style="width : 750px; height : 500px; " value="닭꼬치">
+          <input name="n_content" type="text" style="width : 750px; height : 500px; "/>
 
           <hr>
-</c:forEach>
+
+
           <!-- Comments Form -->
           <div class="card my-4">
             <h5 class="card-header">댓글창</h5>
             <div class="card-body">
-              <form>
                 <div class="form-group">
                   <textarea class="form-control" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">댓글달기</button>
-              </form>
             </div>
           </div>
 
@@ -90,10 +82,8 @@
                   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
 
 
@@ -115,6 +105,8 @@
               </div>
             </div>
           </div>
+
+
 
           <!-- Categories Widget -->
           <div class="card my-4">
@@ -151,13 +143,7 @@
             </div>
           </div>
 
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
+         
 
         </div>
 
@@ -165,4 +151,6 @@
       <!-- /.row -->
 
     </div>
+    
+    </form>
     <!-- /.container -->
