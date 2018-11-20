@@ -1,5 +1,7 @@
 package org.web.kworld.login;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.web.kworld.login.dao.MemberDAO;
 import org.web.kworld.login.vo.MemberVO;
 import org.web.kworld.news.dao.NewsDAO;
+import org.web.kworld.news.vo.NewsVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -21,13 +24,14 @@ public class TestMemberDAO {
 	private SqlSession sqlSession;
 	
 	@Inject
-	private NewsDAO newsDAO = null;
+	private NewsDAO newsDAO ;
 
 	@Test
 	public void testInsert() throws Exception{
 		System.out.println(sqlSession);
 		System.out.println(">>> " + newsDAO);
-		newsDAO.selectNews();
+		List<NewsVO> list = newsDAO.selectNews();
+		System.out.println(">>>>> " + list.size());
     }
 
 	@Test
@@ -39,8 +43,13 @@ public class TestMemberDAO {
 	
 	@Test
 	public void testFindEmail1() throws Exception{
-		
-		//newsDAO.selectNews();
+		//newsDAO.newsOne();
+		NewsVO vo = new NewsVO();
+		vo.setN_no(1);
+		vo.setN_title("제목");
+		vo.setN_content("efe");
+		vo.setN_content2("efe");
+		newsDAO.updateNews(vo);
 		
 	}
 }

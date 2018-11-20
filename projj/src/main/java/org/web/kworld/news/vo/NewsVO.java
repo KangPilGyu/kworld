@@ -12,12 +12,19 @@ public class NewsVO {
 		    private int n_cnt;
 		    private String n_file;
 		    private String n_content;
+		    private String n_content2;
 		    private int n_fav;
 		    private int m_id;
 	
 		    
 
-		   public int getN_no() {
+		   public String getN_content2() {
+				return n_content2;
+			}
+			public void setN_content2(String n_content2) {
+				this.n_content2 = n_content2;
+			}
+		public int getN_no() {
 		      return n_no;
 		   }
 		   public void setN_no(int n_no) {

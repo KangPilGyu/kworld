@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
- <!-- <div class="row" style="height: 50px"></div> -->
+ 
+ <div class="row" style="height: 50px"></div>
  
 <!-- Page Content -->
     <div class="container">
@@ -22,7 +23,7 @@
         <div class="col-md-5">
           <h3>${news.n_title }</h3>
           <p>${news.n_content}</p>
-          <a class="btn btn-primary" href="/view">View Project</a>
+          <a class="btn btn-primary" href="/news/detail/${news.n_no}">View Project</a>
         </div>
       </div>
       <!-- /.row -->

@@ -6,9 +6,38 @@
 <mapper namespace="org.web.kworld.news.NewsMapper">
 
 <select id="selectNews" resultType="org.web.kworld.news.vo.NewsVO">
+<![CDATA[
 select *
 from news
 order by n_no
+]]>
 </select>
+
+<select id="count" resultType="int">
+select count(*)
+from news
+</select>
+
+<select id="newsOne" resultType="org.web.kworld.news.vo.NewsVO">
+select *
+from news
+where n_no = #{n_no}
+</select>
+
+
+<update id="updateNews">
+update news
+set n_title = #{n_title},
+	n_content = #{n_content},
+	n_content2 = #{n_content2}
+where n_no = #{n_no}
+</update>
+
+
+
+<insert id="newsInsert">
+insert into news (n_no,n_title,n_content,n_content2)
+values #{n_no},#{n_title},#{n_content},#{n_content2}
+</insert>
 
 </mapper>

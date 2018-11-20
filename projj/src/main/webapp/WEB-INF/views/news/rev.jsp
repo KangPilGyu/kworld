@@ -1,65 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+  <div class="row" style="height: 50px"></div>
+  
+<br/>
+  <form method="post">
  <!-- Page Content -->
     <div class="container">
-
       <div class="row">
 
         <!-- Post Content Column -->
         <div class="col-lg-8">
-
+			<button type="submit" class="btn btn-warning">수정완료</button>
           <!-- Title -->
-          <h1 class="mt-4">Post Title</h1>
+          
+          <br/>
+          
+              <c:forEach items="${ list}" var="news" >
+         <input name="n_title" class="mt-4" type="text"  style="width : 300px; height : 50px;" value="${news.n_title}" />
 
           <!-- Author -->
           <p class="lead">
             by
-            <a href="#">Start Bootstrap</a>
+            <a href="#">${news.n_writer }</a>
           </p>
 
           <hr>
 
           <!-- Date/Time -->
-          <p>Posted on January 1, 2018 at 12:00 PM</p>
+          <p>${news.n_regdate }</p>
 
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+          <img class="img-fluid rounded" src="/views/news/1.jpg" alt="">
 
           <hr>
 
           <!-- Post Content -->
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+          <input name="n_content2" class="lead" style="width : 750px; height : 100px; "value="${news.n_content2} " />
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-          <blockquote class="blockquote">
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in
-              <cite title="Source Title">Source Title</cite>
-            </footer>
-          </blockquote>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
+          <input  name="n_content" type="text" style="width : 750px; height : 500px; " value="${news.n_content} ">
+		<input type="hidden" name="n_no" value="${news.n_no}">
+	
           <hr>
-
+</c:forEach>
           <!-- Comments Form -->
           <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+            <h5 class="card-header">댓글창</h5>
             <div class="card-body">
-              <form>
+            
                 <div class="form-group">
                   <textarea class="form-control" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+                <button type="submit" class="btn btn-primary">댓글달기</button>
+              
             </div>
           </div>
 
@@ -99,6 +97,10 @@
           </div>
 
         </div>
+
+
+
+
 
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
@@ -165,4 +167,5 @@
       <!-- /.row -->
 
     </div>
+    </form>
     <!-- /.container -->

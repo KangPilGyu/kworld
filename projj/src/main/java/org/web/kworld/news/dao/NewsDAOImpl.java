@@ -10,10 +10,10 @@ import com.google.inject.Inject;
 
 
 //DAO를 뜻한다 빈객체를 만들었따
-@Repository
+//@Repository
 public class NewsDAOImpl implements NewsDAO{
 	
-	@Inject//주입
+	//@/Inject//주입
 	private SqlSession sqlSession;
 	
 	//org.web.kworld.news.NewsMapper.selectNews
@@ -31,6 +31,32 @@ public class NewsDAOImpl implements NewsDAO{
 	@Override
 	public List<NewsVO> selectNews() throws Exception {
 		return sqlSession.selectList( NAMESPACE + ".selectNews");
+	}
+
+	@Override
+	public int count() throws Exception {
+		return sqlSession.selectOne( NAMESPACE + ".count");
+	}
+
+	@Override
+	public NewsVO newsOne(int n_no) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".newsOne",n_no);
+	}
+
+	@Override
+	public void updateCnt(int n_no) throws Exception {
+		
+	}
+
+	@Override
+	public NewsVO selectOne(int n_no) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".selectOne");
+	}
+
+	@Override
+	public void updateNews(NewsVO vo) throws Exception {
+		sqlSession.update(NAMESPACE+".updateNews");
+		
 	}
 	
 	
