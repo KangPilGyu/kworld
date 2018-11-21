@@ -1,8 +1,8 @@
 package com.util.page;
 
 public class Criteria {
-	private int page;
-	private int perPageNum;
+	private int page; // page 넘버
+	private int perPageNum; // page에 보일 글 수.... 
 	
 	public Criteria() {
 		this.page=1;

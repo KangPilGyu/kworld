@@ -3,16 +3,105 @@
     <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<script id="template" type="text/x-handlebars-template">
+<li style="display:inline-block;" data-src='{{fullName}}' >
+	<img src="{{imgsrc}}" ><br>
+	<a href="{{getLink}}" >{{fileName}}</a><br>
+	<a id='file'><i class="fas fa-trash-alt"></i><a/>
+</li>
+</script>
+
+
 <script>
 function fn_updateSubmit(){
-	$("form").submit();
+		
+		var that = $("form");
+		
+		var str = "";
+		
+		$("#file-attach li").each(function(index){
+			str +="<input type='hidden' name='files["+index+"]' value='"+$(this).attr("data-src")+"'>";
+		});
+	
+		that.append(str);
+		
+		that.get(0).submit();
 }
 $(document).ready(function(){
+	$("#file-attach").on("click","li #file",function(event){
+		var that = $(this);
+		
+/* 		$.ajax({
+			url:"/deleteNoticeFile",
+			data : {fileName:$(this).parent().attr("data-src")},
+			async : false,
+			success:function(){
+				alert("성공디비 삭제");
+				
+			}
+		}); */
+		$.ajax({
+			url:"/deleteFile",
+			type:"post",
+			data:{fileName:$(this).parent().attr("data-src")},
+			dataType:"text",
+			async : false,
+			success:function(result){
+				if(result=='deleted'){
+					alert("성공파이삭제");
+					that.parent().remove();	
+				}
+			}
+		});
+	});
+	//초기화
+	var n_no =${notice.n_no};
+	var template = Handlebars.compile($("#template").html());
+	
+	$.getJSON("/notice/getAttach/"+n_no,function(list){
+		$(list).each(function(){
+			var fileInfo = getFileInfo(this);
+			var html = template(fileInfo);
+			$("#file-attach").append(html);
+		});
+	});
+	
+	
+var template = Handlebars.compile($("#template").html());
+			
+	$("#fileDrop").on("dragenter dragover",function(event){event.preventDefault();});
+	$("#fileDrop").on("drop",function(event){
+		event.preventDefault();
+		var files = event.originalEvent.dataTransfer.files;
+		var file =files[0];
+		
+		var formData = new FormData();
+		formData.append("file",file);
+		
+		$.ajax({
+			url: '/uploadAjax' ,
+			data: formData ,
+			dataType:'text' ,
+			processData : false ,
+			contentType : false ,
+			type : 'POST' ,
+			success : function(data){
+				var fileInfo = getFileInfo(data);
+				var html = template(fileInfo);
+				$("#file-attach").append(html);
+			}
+		});
+		
+		});
+		
 	$('input[type="text"]').keydown(function() {
 	    if (event.keyCode === 13) {
 	        event.preventDefault();
 	    }
 	});
+	
+	
 });
 
 </script>
@@ -43,13 +132,24 @@ $(document).ready(function(){
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="이미지 없음">
-
+          <div id="fileDrop" class="jumbotron">
+        		<ul id="file-attach" >
+        		</ul>
+        	</div>
+        	
           <hr>
 
           <!-- Post Content -->
           <div class="postContent" >
-           <input type="text" name="n_content" value="${notice.n_content}" style="height: 300px; width:900px" />
+          <textarea name="n_content" id="editor1" rows="10" cols="80">
+               ${notice.n_content}
+            </textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+               	
+            </script>
           </div>
           <hr>
           

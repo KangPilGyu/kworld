@@ -1,6 +1,8 @@
 package org.web.kworld.notice.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -51,6 +53,37 @@ public class NoticeDAOImpl implements NoticeDAO{
 	@Override
 	public int countNotice(SearchCriteria cri) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+".countNotice",cri);
+	}
+
+	@Override
+	public void addAttach(String f_name) throws Exception {
+		sqlSession.insert(NAMESPACE+".addAttach",f_name);
+	}
+
+	@Override
+	public List<String> getAttach(int n_no) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".getAttach",n_no);
+		
+	}
+
+	@Override
+	public void deleteAttach(int n_no) throws Exception {
+		sqlSession.delete(NAMESPACE+".deleteAttach",n_no);
+		
+	}
+
+	@Override
+	public void replaceAttcah(String fullName, Integer bno) throws Exception {
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("n_no", bno);
+		paramMap.put("fullName", fullName);		
+		sqlSession.insert(NAMESPACE+".replaceAttcah",paramMap);
+		
+	}
+
+	@Override
+	public void deleteFile(String f_name) throws Exception {
+		sqlSession.delete(NAMESPACE+".deleteFile");
 	}
 
 }

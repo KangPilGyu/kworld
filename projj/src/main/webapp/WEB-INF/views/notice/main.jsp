@@ -4,14 +4,30 @@
 <%@taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
 $(document).ready(function(){
+	if('${pageMaker.cri.searchType}'!=''){
+		$(".dropdown-menu li").each(function(){
+			if(($(this).find("input")).val()=='${pageMaker.cri.searchType}'){
+				$("#dropdownMenu1").html($(this).text()+"<span class='caret'></span>");
+			}
+		});
+		$("#condition").val('${pageMaker.cri.keyword}');
+	}
+	
 	if('${param.msg}'=='upsuccess')
 		alert("업데이트 완료 했습니다.");
 	else if('${param.msg}'=='delsuccess')
 		alert("삭제 완료 했습니다.");
-	
+		
 	$(".dropdown-menu li").click(function(){
 		$("#dropdownMenu1").html($(this).text()+"<span class='caret'></span>");
+		$("input[name='searchType']").val($(this).find("input").val());
 	});
+	
+	$("#searchBtn").click(function(e){
+		$("input[name='keyword']").val($("#condition").val())	; //keyword
+		$("#searchForm").submit();
+	});
+	
 	
 });
 </script>
@@ -19,28 +35,32 @@ $(document).ready(function(){
  <div class="row" style="height: 50px"></div>
 <div class="row">
           <h2 class="sub-header">공지 사항</h2>
-         
+         <form id="searchForm" method="post">
          <div class="search" style="float:right; display: inline-block;">
-          
           <div class="dropdown">
   				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
     			검색조건
     			<span class="caret"></span>
  				</button>
  					 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">제목</a></li>
-   							 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">작성자</a></li>
-    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">내용</a></li>
-    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">제목+내용</a></li>
-    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">제목+내용+작성자</a></li>
+    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#" ><input type="hidden" value="t">제목</a></li>
+   							 <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><input type="hidden" value="w">작성자</a></li>
+    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#" ><input type="hidden" value="c">내용</a></li>
+    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#" ><input type="hidden" value="wc">제목+내용</a></li>
+    						<li role="presentation"><a role="menuitem" tabindex="-1" href="#" ><input type="hidden" value="twc">제목+내용+작성자</a></li>
  				 </ul>
  				 <input id="condition" type="text" value=""/>
- 				 <button type="submit" class="btn btn-primary btn-sm">검색</button>
-			</div>
-			
+ 				 <button id="searchBtn" type="button" class="btn btn-primary btn-sm">검색</button>
+				</div>
+				<input type="hidden" name="page" value="${pageMaker.cri.page}">
+				<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}">
+				<input type="hidden" name="searchType" value="">
+				<input type="hidden" name="keyword" value="">
+				</div>
+			</form>
 			
 		
-</div>
+
 <div class="row">
 		<br>
 		<br>

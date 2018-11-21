@@ -1,6 +1,6 @@
 package org.web.kworld.notice.controller;
 
-import java.security.Principal;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.web.kworld.notice.service.NoticeService;
 import org.web.kworld.notice.vo.NoticeVO;
 
-import com.util.page.PageMaker;
 import com.util.page.SearchCriteria;
 
 @Controller
@@ -34,6 +34,8 @@ public class NoticeController {
 	public String blogmain(@ModelAttribute("cri") SearchCriteria cri,
 			Model model) {
 		logger.info("notice main 페이지 호출");
+		logger.info(cri.getSearchType());
+		logger.info(cri.getKeyword());
 		
 		model.addAttribute("list",noticeService.getList(cri));
 		
@@ -47,6 +49,7 @@ public class NoticeController {
 	public String noticeRegisterGET() {
 		logger.info("notice register get 페이지 호출");
 		return "notice.register";
+
 	}
 	
 	// 공지 사항 등록 작업
@@ -54,8 +57,8 @@ public class NoticeController {
 	public String noticeRegisterPOST(NoticeVO vo) {
 		logger.info("notice register post 페이지 호출");
 		
-		noticeService.registNotice(vo);
-		
+		noticeService.registNotice(vo);//insert
+
 		return "notice/registerSuccess";
 	}
 	
@@ -84,11 +87,11 @@ public class NoticeController {
 			RedirectAttributes rttr
 			) {
 		logger.info("notice update post 페이지 호출");
-		
 		noticeService.updateNotice(vo);
 		rttr.addAttribute("msg","upsuccess");
 		return "redirect:/notice/main";
 	}
+	
 	@RequestMapping(value="/delete/{n_no}", method=RequestMethod.GET)
 	public String deleteNoticePOST(
 			@PathVariable("n_no") int n_no,
@@ -101,6 +104,16 @@ public class NoticeController {
 		rttr.addAttribute("msg","delsuccess");
 		
 		return "redirect:/notice/main";
+	}
+	@RequestMapping("/getAttach/{n_no}")
+	@ResponseBody
+	public List<String> getAttach(@PathVariable("n_no") int n_no){
+		return noticeService.getAttach(n_no);
+	}
+	@ResponseBody
+	@RequestMapping("/deleteNoticeFile")
+	public void deleteFile(String fileName) {
+		noticeService.deleteFile(fileName);
 	}
 	
 }

@@ -19,8 +19,7 @@
 		<sec:intercept-url pattern="/login/google" access="permitAll"/>
 		<sec:form-login login-page="/login/login" 
 			username-parameter="m_email"
-		  password-parameter="m_pwd"  default-target-url="/"
-		  always-use-default-target="true"/>
+		  password-parameter="m_pwd" />
 		<sec:logout logout-url="/login/logout" logout-success-url="/"/>
 	</sec:http>
 	

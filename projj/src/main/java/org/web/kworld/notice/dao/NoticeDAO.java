@@ -21,4 +21,14 @@ public interface NoticeDAO {
 	public void updateNotice(NoticeVO vo) throws Exception;
 	
 	public void deleteNotice(int n_no) throws Exception;
+	
+	public void addAttach(String f_name) throws Exception;
+	
+	public List<String> getAttach(int n_no) throws Exception;
+	
+	public void deleteAttach(int n_no) throws Exception;
+	
+	public void replaceAttcah(String fullName, Integer bno) throws Exception;
+	
+	public void deleteFile(String f_name) throws Exception;
 }

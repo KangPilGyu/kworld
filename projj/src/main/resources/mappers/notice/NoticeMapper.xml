@@ -5,16 +5,50 @@
     
 <mapper namespace="org.web.kworld.notice.NoticeMapper">
 
+<sql id="condition">
+<if test="searchType != null">
+	<if test="searchType == 't'.toString()">
+		and n_title like CONCAT('%',#{keyword},'%')
+	</if>
+	<if test="searchType == 'w'.toString()">
+		and n_writer like CONCAT('%',#{keyword},'%')
+	</if>
+	<if test="searchType == 'c'.toString()">
+		and n_content like CONCAT('%',#{keyword},'%')
+	</if>
+	<if test="searchType == 'wc'.toString()">
+		and n_content like CONCAT('%',#{keyword},'%')
+		or n_writer like CONCAT('%',#{keyword},'%')
+	</if>
+	<if test="searchType == 'twc'.toString()">
+		and n_content like CONCAT('%',#{keyword},'%')
+		or n_writer like CONCAT('%',#{keyword},'%')
+		or n_title like CONCAT('%',#{keyword},'%')
+	</if>
+</if>
+
+</sql>
+
 <select id="selectNoticeList" resultType="org.web.kworld.notice.vo.NoticeVO">
+<![CDATA[
 select *
 from notice
+where 1=1
+]]>
+<include refid="condition"></include>
+<![CDATA[
 order by n_no desc
 limit #{pageStart}, #{perPageNum}
+]]>
 </select>
 
 <select id="countNotice" resultType="int">
+<![CDATA[
 select count(*)
 from notice
+where 1=1
+]]>
+<include refid="condition"></include>
 </select>
 
 
@@ -47,7 +81,7 @@ where n_no = #{n_no}
 
 <update id="updateNotice">
 update notice
-set n_title = #{n_title}, n_content = #{n_content}
+set n_title = #{n_title}, n_content = #{n_content}, n_updatedate=now()
 where n_no = #{n_no}
 </update>
 
@@ -56,6 +90,31 @@ delete from notice
 where n_no = #{n_no}
 </delete>
 
+<insert id="addAttach">
+insert into noticefile(f_name, n_no)
+values (#{f_name}, LAST_INSERT_ID())
+</insert>
 
+
+<select id="getAttach" resultType="string">
+select f_name from noticefile 
+where n_no = #{n_no}
+order by regdate
+</select>
+
+<delete id="deleteAttach">
+delete from noticefile
+where n_no = #{n_no} 
+</delete>
+
+<delete id="deleteFile">
+delete from noticefile
+where f_name = #{f_name} 
+</delete>
+
+<insert id="replaceAttcah">
+insert into noticefile(f_name,n_no)
+values (#{fullName}, #{n_no})
+</insert>
 
 </mapper>

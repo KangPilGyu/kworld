@@ -1,6 +1,7 @@
 package com.util.page;
 
 public class SearchCriteria extends Criteria{
+	
 	private String searchType;
 	private String keyword;
 	
