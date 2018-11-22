@@ -20,4 +20,6 @@ public interface NewsDAO {
 	
 	public void newsInsert(NewsVO vo) throws Exception;
 	
+	public void newsDelete(NewsVO vo) throws Exception;
+	
 }

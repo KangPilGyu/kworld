@@ -20,8 +20,8 @@
          <input name="n_title" class="mt-4" type="text"  style="width : 300px; height : 50px;" />
           <!-- Author -->
           <p class="lead">
-            by
-           <input type="text" />
+            글쓴이 : 
+           <input name="n_writer" value="${news.n_writer }" type="text">
           </p>
           <hr>
           <!-- Date/Time -->

@@ -17,15 +17,14 @@
 			<button type="submit" class="btn btn-warning">수정완료</button>
           <!-- Title -->
           
-          <br/>
+         <br/>
           
-              <c:forEach items="${ list}" var="news" >
          <input name="n_title" class="mt-4" type="text"  style="width : 300px; height : 50px;" value="${news.n_title}" />
 
           <!-- Author -->
           <p class="lead">
-            by
-            <a href="#">${news.n_writer }</a>
+            글쓴이 : 
+           <input name="n_writer" value="${news.n_writer }" type="text"/>
           </p>
 
           <hr>
@@ -47,7 +46,7 @@
 		<input type="hidden" name="n_no" value="${news.n_no}">
 	
           <hr>
-</c:forEach>
+
           <!-- Comments Form -->
           <div class="card my-4">
             <h5 class="card-header">댓글창</h5>

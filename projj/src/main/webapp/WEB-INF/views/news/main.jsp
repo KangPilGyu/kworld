@@ -9,20 +9,20 @@
     <div class="container">
 
       <!-- Page Heading -->
-      <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
+      <h1 class="my-4">News
+        <small>쌍용 교육센터</small>
       </h1>
 	<c:forEach items="${ list}" var="news" >
       <!-- Project One -->
       <div class="row">
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="/resources/images/2.jpg" alt="" style="width:650px ;height:300px"/>
           </a>
         </div>
         <div class="col-md-5">
           <h3>${news.n_title}</h3>
-          <p>${news.n_content}</p>
+          <p>${news.n_content2}</p>
           
           <a class="btn btn-primary" href="/news/detail/${news.n_no}">보기</a>
         </div>

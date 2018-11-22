@@ -85,4 +85,13 @@ public class NewsService {
 		}
 	}
 	
+	
+	public void newsDelete(NewsVO vo) {
+		try {
+			newsDAO.newsDelete(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

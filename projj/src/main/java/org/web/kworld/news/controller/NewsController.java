@@ -58,8 +58,8 @@ public class NewsController {
 	
 	//update 작업. 그냥 홈페이지 불러오는것
 	@RequestMapping(value="/rev/{n_no}", method=RequestMethod.GET)//news/main
-	public String newsRev(Model model){
-		model.addAttribute("list", newsService.selectList());
+	public String newsRev(Model model,@PathVariable("n_no") int n_no){
+		model.addAttribute("news", newsService.getSelectOne(n_no));
 		logger.info("news Rev 페이지 호출");
 		return"news.rev";
 		}
@@ -88,6 +88,15 @@ public class NewsController {
 		return"redirect:/news/main";
 	}
 	
+	
+	
+
+	@RequestMapping(value="/delete/{n_no}", method=RequestMethod.GET)//news/main
+	public String newsDelete(Model model, @PathVariable("n_no") int n_no ,NewsVO vo){
+		newsService.newsDelete(vo);
+		logger.info("news Reg 페이지 호출");
+		return"redirect:/news/main";
+	}
 	
 	
 	

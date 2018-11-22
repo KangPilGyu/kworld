@@ -29,7 +29,8 @@ where n_no = #{n_no}
 update news
 set n_title = #{n_title},
 	n_content = #{n_content},
-	n_content2 = #{n_content2}
+	n_content2 = #{n_content2},
+	n_writer = #{n_writer}
 where n_no = #{n_no}
 </update>
 
@@ -39,5 +40,12 @@ where n_no = #{n_no}
 insert into news (n_no,n_title,n_content,n_content2)
 values (#{n_no},#{n_title},#{n_content},#{n_content2})
 </insert>
+
+
+
+<delete id="newsDelete">
+delete from news
+where n_no=#{n_no}
+</delete>
 
 </mapper>

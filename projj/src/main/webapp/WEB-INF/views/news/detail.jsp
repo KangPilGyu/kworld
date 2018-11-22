@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
  <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+function deleteSubmit() {
+	var con = confirm("삭제 하시겠습니까?");
+	if (con) {
+		self.location.href="/news/delete/${news.n_no}";
+	}
+}
 
+</script>
  
   <div class="row" style="height: 50px"></div>
   
@@ -21,7 +29,7 @@
 
           <!-- Author -->
           <p class="lead">
-            by
+            글쓴이 : 
             <a href="#">${news.n_writer }</a>
           </p>
 
@@ -50,8 +58,8 @@
           <p>${news.n_content }</p>
 
 <a href="/news/reg"><button type="button" class="btn btn-primary">등록</button></a>
-<a href="/news/rev"><button type="button" class="btn btn-warning">수정</button></a>
-<button type="button" class="btn btn-danger">삭제</button>
+<a href="/news/rev/${news.n_no}"><button type="button" class="btn btn-warning">수정</button></a>
+<a href="/news/delete/${news.n_no}"><button type="button" class="btn btn-danger " onclick="deleteSubmit()">삭제</button></a>
 
 
 
