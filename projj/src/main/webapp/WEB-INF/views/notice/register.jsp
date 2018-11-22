@@ -15,7 +15,6 @@ $(document).ready(function(){
 			data:{fileName:$(this).parent().attr("data-src")},
 			dataType:"text",
 			success:function(result){
-				alert("성공");
 				if(result=='deleted'){
 					that.parent().remove();
 				}
@@ -110,10 +109,7 @@ $(document).ready(function(){
         		<ul id="file-attach" >
         		</ul>
         	</div>
-        	
-          <img id="imgBox" class="img-fluid rounded" style="height:300px; width: 900px" src="http://placehold.it/900x300" alt="">
-
-          <hr>
+        	<hr>
 
           <!-- Post Content -->
          <div class="postContent" >

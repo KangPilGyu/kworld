@@ -12,7 +12,6 @@
 </li>
 </script>
 
-
 <script>
 function fn_updateSubmit(){
 		
@@ -49,7 +48,6 @@ $(document).ready(function(){
 			async : false,
 			success:function(result){
 				if(result=='deleted'){
-					alert("성공파이삭제");
 					that.parent().remove();	
 				}
 			}

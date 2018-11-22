@@ -81,5 +81,9 @@
         </div>
       </div>
       
+        <iframe class="featurette-image img-responsive center-block" width="500" height="500" style="display:none;"
+			src="https://www.youtube.com/embed/yXQViqx6GMY?controls=0&autoplay=1">
+		</iframe>
+      
 </div><br>
 
