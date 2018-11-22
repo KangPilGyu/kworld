@@ -1,9 +1,31 @@
 # kworld
-Spring Project 
-기본 셋팅 파일 입니다....
-MySql 8.0  설치되있어야 사용 가능합니다...... 필요합니다.
+Spring 을 이용한 웹페이지 구현 Project
 
-Mysql 설치시 auth비밀번호 설정하는 부분 있는데 아래꺼 버전 5.0 으로 설치해야합니다.... 인증 복잡해요 .;
-권한부여하면됩니다.
-설치시에 유저 생성해주시고 아래 처럼 권한 부여해주세요
-grant all privileges on *.* to 생성유저@'%' identifield by '비밀번호';
+## 사용 기술 / 언어
+1. JAVA 1.8
+2. HTML5 / CSS3 / JavaScript
+3. JQuery / Handlebars
+3. JSP / Servlet 
+4. MySQL 8.0
+5. Spring Framework 4.1.7 RELEASE
+6. MyBatis / Tiles
+7. BootStrap
+
+## 현재 구현 사항
+1. 로그인 
+2. 게시판
+
+### 1. 로그인
+  Spring Security를 사용한 로그인 구현
+  Spring Security 확장( UserDetail, UserDetailService)
+  Oauth 2.0를 사용한 SNS 연동 기능
+  메일 전송 기능 ( 가입 인증 절차 )
+  
+### 2. 게시판
+   Spring MVC 기반 + MyBatis 사용한 CRUD 게시판 구현( 페이징, 검색 )
+   Spring Transcation 처리
+   AJAX를 이용한 댓글, 파일 업로드 처리
+   
+   
+
+
