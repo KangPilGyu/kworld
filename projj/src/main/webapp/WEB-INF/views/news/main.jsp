@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="/resources/images/2.jpg" alt="" style="width:650px ;height:300px"/>
+            <img class="img-fluid rounded mb-3 mb-md-0" src="/resources/images/${news.n_file}.jpg" alt="" style="width:650px ;height:300px"/>
           </a>
         </div>
         <div class="col-md-5">

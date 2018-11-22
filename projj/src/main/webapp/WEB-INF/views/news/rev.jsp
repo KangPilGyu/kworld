@@ -42,7 +42,7 @@
           <!-- Post Content -->
           <input name="n_content2" class="lead" style="width : 750px; height : 100px; "value="${news.n_content2} " />
 
-          <input  name="n_content" type="text" style="width : 750px; height : 500px; " value="${news.n_content} ">
+          <input  name="n_content" type="text" style="width : 750px; height : 500px; " value="${news.n_content} "/>
 		<input type="hidden" name="n_no" value="${news.n_no}">
 	
           <hr>

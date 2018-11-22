@@ -34,7 +34,8 @@
 
           <!-- Post Content -->
           <input name="n_content2" class="lead" style="width : 750px; height : 100px;"/>
-
+<hr>
+<br/>
           <input name="n_content" type="text" style="width : 750px; height : 500px; "/>
 
           <hr>

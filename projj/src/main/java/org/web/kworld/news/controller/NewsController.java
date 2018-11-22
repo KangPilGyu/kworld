@@ -74,7 +74,7 @@ public class NewsController {
 
 	
 	
-	
+	//삽입
 	@RequestMapping(value="/reg", method=RequestMethod.GET)//news/main
 	public String newsReg(Model model){
 		model.addAttribute("list", newsService.selectList());
@@ -90,7 +90,7 @@ public class NewsController {
 	
 	
 	
-
+	//삭제
 	@RequestMapping(value="/delete/{n_no}", method=RequestMethod.GET)//news/main
 	public String newsDelete(Model model, @PathVariable("n_no") int n_no ,NewsVO vo){
 		newsService.newsDelete(vo);
