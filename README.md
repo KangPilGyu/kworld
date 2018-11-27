@@ -2,12 +2,12 @@
 Spring 을 이용한 웹페이지 구현 Project
 
 ## 사용 기술 / 언어
-1. JAVA 1.8
-2. HTML5 / CSS3 / JavaScript
+1. JAVA
+2. HTML / CSS / JavaScript
 3. JQuery / Handlebars
 3. JSP / Servlet 
-4. MySQL 8.0
-5. Spring Framework 4.1.7 RELEASE
+4. MySQL
+5. Spring Framework
 6. MyBatis / Tiles
 7. BootStrap
 
