@@ -40,7 +40,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberVO selectMember(String m_email, String m_pwd) throws Exception {
-		Map<String,Object> paramMap = new HashMap<>();
+		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("m_email", m_email);
 		paramMap.put("m_pwd", m_pwd);
 		

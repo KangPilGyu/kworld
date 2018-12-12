@@ -74,7 +74,7 @@ public class NoticeDAOImpl implements NoticeDAO{
 
 	@Override
 	public void replaceAttcah(String fullName, Integer bno) throws Exception {
-		Map<String,Object> paramMap = new HashMap<>();
+		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("n_no", bno);
 		paramMap.put("fullName", fullName);		
 		sqlSession.insert(NAMESPACE+".replaceAttcah",paramMap);

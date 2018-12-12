@@ -31,7 +31,7 @@ decoders = {ChatMessageDecoder.class})
 public class ChattingController {
 	
 	private static int increaseNum = 1;
-	private static final List<Session> sessionList = new ArrayList<>();
+	private static final List<Session> sessionList = new ArrayList<Session>();
 	private static final Logger logger = LoggerFactory.getLogger(ChattingController.class);
 
 

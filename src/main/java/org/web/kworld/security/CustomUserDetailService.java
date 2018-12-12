@@ -38,7 +38,7 @@ public class CustomUserDetailService implements UserDetailsService {
 		}
 		 if(member==null) throw new UsernameNotFoundException(username);
 		 
-		 List<GrantedAuthority> authorities = new ArrayList<>();
+		 List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		 authorities.add(new SimpleGrantedAuthority(member.getM_auth()));
 		 
 		return new SecUser(member.getM_email(), member.getM_pwd(), 

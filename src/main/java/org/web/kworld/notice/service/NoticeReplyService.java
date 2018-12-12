@@ -33,8 +33,6 @@ public class NoticeReplyService {
 								(noticeReplyDAO.selectAll(b_no),HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<>
-								(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
