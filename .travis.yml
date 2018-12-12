@@ -44,7 +44,6 @@ deploy:
       repo: KangPilGyu/kworld #Github 주소
       branch: alwaysUpdatePlz 
 
-
       
 # CI 실행 완료시 메일로 알람함
 notifications:
