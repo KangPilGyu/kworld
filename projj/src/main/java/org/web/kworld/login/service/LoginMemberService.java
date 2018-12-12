@@ -37,7 +37,7 @@ public class LoginMemberService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 4. email 발송
+		// 4. email 발송		
 		emailService.authNumSend(member);
 	}
 	public void insertSNSMember(MemberVO member) {

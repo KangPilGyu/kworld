@@ -9,6 +9,7 @@ public class SecUser extends User{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 7119527134548448336L;
 	
 	private int m_id;

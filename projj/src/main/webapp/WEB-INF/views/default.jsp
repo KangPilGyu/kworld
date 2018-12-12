@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+ <script>
+ $(document).ready(function(){
+	 $(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+	 });
+ </script>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -11,18 +15,18 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+        <img src="/resources/images/christmas.jpg" style="height: 500px" alt="Image">
         <div class="carousel-caption">
-          <h3>Sell $</h3>
-          <p>Money Money.</p>
+          <h3>Marry ChristMas</h3>
+          <p>Hi</p>
         </div>      
       </div>
 
       <div class="item">
-        <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+         <img src="/resources/images/church.jpg" style="height: 500px" alt="Image">
         <div class="carousel-caption">
-          <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p>
+          <h3>Marry ChristMas</h3>
+          <p>Hello</p>
         </div>      
       </div>
     </div>
@@ -38,25 +42,48 @@
     </a>
 </div>
   
+  
+  
 <div class="container text-center">    
-  <h3>What We Do</h3><br>
-  <div class="row">
-    <div class="col-sm-4">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Current Project</p>
-    </div>
-    <div class="col-sm-4"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
-    </div>
-    <div class="col-sm-4">
-      <div class="well">
-       <p>Some text..</p>
+      
+      <hr class="featurette-divider">
+      
+      <div class="row featurette" >
+        <div class="col-md-7">
+          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+<img class="featurette-image img-responsive center-block" src="/resources/images/tree2.jpg">        </div>
       </div>
-      <div class="well">
-       <p>Some text..</p>
+      
+            <hr class="featurette-divider">
+            
+            <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+        
+          <img class="featurette-image img-responsive center-block" src="/resources/images/santa.jpg">        </div>
       </div>
-    </div>
-  </div>
+            
+          <hr class="featurette-divider">
+                 
+                  <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading text-muted">Please Donation Now</h2>
+          <p class="lead text-muted">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="/resources/images/donation.jpg"> 
+        </div>
+      </div>
+      
+        <iframe class="featurette-image img-responsive center-block" width="500" height="500" style="display:none;"
+			src="https://www.youtube.com/embed/yXQViqx6GMY?controls=0&autoplay=1">
+		</iframe>
+      
 </div><br>
 

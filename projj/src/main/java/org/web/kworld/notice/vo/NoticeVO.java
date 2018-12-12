@@ -12,7 +12,21 @@ public class NoticeVO {
     private String n_content;
     private int n_fav;
     private int m_id;
+    private Date n_updatedate;
+    private String[] files;
     
+	public String[] getFiles() {
+		return files;
+	}
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+	public Date getN_updatedate() {
+		return n_updatedate;
+	}
+	public void setN_updatedate(Date n_updatedate) {
+		this.n_updatedate = n_updatedate;
+	}
 	public int getN_no() {
 		return n_no;
 	}

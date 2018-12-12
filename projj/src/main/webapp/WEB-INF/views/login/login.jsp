@@ -2,15 +2,34 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix= "c" uri= "http://java.sun.com/jsp/jstl/core" %>
  <script>
+ // 클라이언트 서버 스크립트 언어......
+ // 
  function openWindows(url){
 	 var win = window.open(url,'login',"width=500px, height=500px, top=200px, left=200px");
  }
+ 
  function setCookie(name,value,expiredays){
 	 var d = new Date();
 	 d.setTime(d.getTime()+(expiredays*24*60*60*1000));
 	 var expires = "expires="+d.toGMTString();
 	 document.cookie = name+"="+value+";"+expires+"; Path=/";
- } 
+ }
+ 
+ function getCookie(cname) {
+	    var name = cname + "=";
+	    var decodedCookie = decodeURIComponent(document.cookie);
+	    var ca = decodedCookie.split(';');
+	    for(var i = 0; i <ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0) == ' ') {
+	            c = c.substring(1);
+	        }
+	        if (c.indexOf(name) == 0) {
+	            return c.substring(name.length, c.length);
+	        }
+	    }
+	    return "";
+	}
  function snsSubmit(){
 	 alert("콜됨");
 	 $("#snsform").attr("action","/j_spring_security_check");
@@ -20,6 +39,12 @@
  }
  
  $(document).ready(function(){
+	 if(getCookie("id")!=""){
+		 $("#inputEmail").val(getCookie("id"));
+		 $("#inputPassword").val(getCookie("pwd"));
+		 $("#remember").attr("checked","checked");
+	 }
+	 
 	 
 	 $("#formlogin").submit(function(){
 				
@@ -61,8 +86,8 @@
 				 $("form").attr("method","post");
 				 
 				 if($("#remember").is(":checked")){
-					 setCookie(id,$("#inputEmail"),30);
-					 setCookie(pwd,$("#inputPassword"),30);
+					 setCookie("id",$("#inputEmail").val(),30); 
+					 setCookie("pwd",$("#inputPassword").val(),30);
 				 }
 			}
 			else if(msg=="needAuth"){
