@@ -3,9 +3,5 @@
 jdk:
   - openjdk8
 
-branches:
-  only:
-    - alwaysUpdatePlz
-
 before_install: "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
 script: "mvn test"
