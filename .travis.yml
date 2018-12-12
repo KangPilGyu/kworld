@@ -5,7 +5,7 @@ jdk:
 
 script: mvn clean package
 
-# Travis CI ¼­¹öÀÇ Home
+# Travis CI ì„œë²„ì˜ Home
 cache:
   directories:
     - '$HOME/.m2/repository'
@@ -18,33 +18,33 @@ before_deploy:
   
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY # Travis repo settings¿¡ ¼³Á¤µÈ °ª
-    secret_access_key: $AWS_SECRET_KEY # Travis repo settings¿¡ ¼³Á¤µÈ °ª
-    bucket: kworld-webservice-deploy #S3 ¹öÅ¶ ³×ÀÓ
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settingsì— ì„¤ì •ëœ ê°’
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settingsì— ì„¤ì •ëœ ê°’
+    bucket: kworld-webservice-deploy #S3 ë²„í‚· ë„¤ì„
     region: ap-northeast-2
     skip_cleanup: true
     acl: public_read
-    local_dir: deploy # before_deploy¿¡¼­ »ı¼ºÇÑ µğ·ºÅä¸®
+    local_dir: deploy # before_deployì—ì„œ ìƒì„±í•œ ë””ë ‰í† ë¦¬
     wait-until-deployed: true
     on:
-      repo: KangPilGyu/kworld #Github ÁÖ¼Ò
+      repo: KangPilGyu/kworld #Github ì£¼ì†Œ
       branch: alwaysUpdatePlz
 
 - provider: codedeploy
-    access_key_id: $AWS_ACCESS_KEY # Travis repo settings¿¡ ¼³Á¤µÈ °ª
-    secret_access_key: $AWS_SECRET_KEY # Travis repo settings¿¡ ¼³Á¤µÈ °ª
-    bucket: kworld-webservice-deploy # S3 ¹öÅ¶
-    key: kworld-webservice.zip # S3 ¹öÅ¶¿¡ ÀúÀåµÈ springboot-webservice.zip ÆÄÀÏÀ» EC2·Î ¹èÆ÷
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settingsì— ì„¤ì •ëœ ê°’
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settingsì— ì„¤ì •ëœ ê°’
+    bucket: kworld-webservice-deploy # S3 ë²„í‚·
+    key: kworld-webservice.zip # S3 ë²„í‚·ì— ì €ì¥ëœ springboot-webservice.zip íŒŒì¼ì„ EC2ë¡œ ë°°í¬
     bundle_type: zip
-    application: kworld-webservice # À¥ ÄÜ¼Ö¿¡¼­ µî·ÏÇÑ CodeDeploy ¾îÇÃ¸®ÄÉÀÌ¼Ç
-    deployment_group: group # À¥ ÄÜ¼Ö¿¡¼­ µî·ÏÇÑ CodeDeploy ¹èÆ÷ ±×·ì
+    application: kworld-webservice # ì›¹ ì½˜ì†”ì—ì„œ ë“±ë¡í•œ CodeDeploy ì–´í”Œë¦¬ì¼€ì´ì…˜
+    deployment_group: group # ì›¹ ì½˜ì†”ì—ì„œ ë“±ë¡í•œ CodeDeploy ë°°í¬ ê·¸ë£¹
     region: ap-northeast-2
     wait-until-deployed: true
     on:
-      repo: KangPilGyu/kworld #Github ÁÖ¼Ò
-      branch: alwaysUpdatePlz
+      repo: KangPilGyu/kworld #Github ì£¼ì†Œ
+      branch: alwaysUpdatePlz 
       
-# CI ½ÇÇà ¿Ï·á½Ã ¸ŞÀÏ·Î ¾Ë¶÷ÇÔ
+# CI ì‹¤í–‰ ì™„ë£Œì‹œ ë©”ì¼ë¡œ ì•ŒëŒí•¨
 notifications:
   email:
     recipients:
