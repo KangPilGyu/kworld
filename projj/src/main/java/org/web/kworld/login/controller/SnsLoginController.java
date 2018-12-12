@@ -49,7 +49,7 @@ public class SnsLoginController {
 	    public String loginlogin(HttpServletResponse response, Model model, HttpSession session,
 	    		RedirectAttributes rttr
 	    		,HttpServletRequest request) {
-		 logger.info("login / login  호출");
+		  logger.info("login / login  호출");
 		  
 		  	String google_url = googleLoginService.getGoogleUrl();
 	    	model.addAttribute("google_url",google_url);

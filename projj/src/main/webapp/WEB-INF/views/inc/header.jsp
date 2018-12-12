@@ -23,7 +23,7 @@ $(document).ready(function(){
 });
 </script>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" >
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -36,7 +36,7 @@ $(document).ready(function(){
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul id="navv"  class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li><a href="/blog/main">Blog</a></li>
+        <li><a href="/chat">Chat</a></li>
         <li><a href="/notice/main">Notice</a></li>
         <li><a href="${pageContext.request.contextPath}/board/">Board</a></li>
       </ul>

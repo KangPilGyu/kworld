@@ -37,12 +37,20 @@
       <put-attribute name="content" value="/WEB-INF/views/blog/{1}.jsp"></put-attribute>
    </definition>
    
-     <!--blog tiles 설정 -->
+     <!--notice tiles 설정 -->
    <definition name="notice.*" template="/WEB-INF/views/notice/layout.jsp">
       <put-attribute name="common" value="/WEB-INF/views/inc/common.jsp"></put-attribute>
       <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"></put-attribute>
       <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
       <put-attribute name="content" value="/WEB-INF/views/notice/{1}.jsp"></put-attribute>
+   </definition>
+   
+       <!--chat tiles 설정 -->
+   <definition name="chat.*" template="/WEB-INF/views/chat/layout.jsp">
+      <put-attribute name="common" value="/WEB-INF/views/inc/common.jsp"></put-attribute>
+      <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp"></put-attribute>
+      <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
+      <put-attribute name="content" value="/WEB-INF/views/chat/{1}.jsp"></put-attribute>
    </definition>
     
 </tiles-definitions>
