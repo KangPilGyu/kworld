@@ -14,7 +14,7 @@ import org.web.kworld.login.vo.MemberVO;
 		locations= {"file:src/main/webapp/WEB-INF/spring/**/*.xml"}
 		)
 public class TestMemberDAO {
-	@Inject
+	/*@Inject
 	private MemberDAO memberDAO;
 	
 	@Test
@@ -30,5 +30,5 @@ public class TestMemberDAO {
 		
 		int str = memberDAO.findEmail("eiffeltop01@gmail.com");
 		System.out.println( str);
-	}
+	}*/
 }

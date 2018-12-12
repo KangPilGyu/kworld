@@ -18,7 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		)
 @WebAppConfiguration
 public class DataSourceTest {
-	@Inject
+	/*@Inject
 	private DataSource dataSource;
 	
 	@Test
@@ -29,5 +29,5 @@ public class DataSourceTest {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

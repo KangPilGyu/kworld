@@ -20,7 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		)
 @WebAppConfiguration
 public class MyBatisTest {
-	@Inject
+	/*@Inject
 	private SqlSessionFactory sqlFactory;
 	
 	@Test
@@ -35,5 +35,5 @@ public class MyBatisTest {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }
