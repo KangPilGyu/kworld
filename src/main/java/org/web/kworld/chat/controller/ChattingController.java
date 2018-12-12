@@ -67,21 +67,18 @@ public class ChattingController {
 	public void onMessage(ChatMessage message, Session session) {
 		String type = message.getType();
 		logger.info("onMessage - "+type);
-		switch (type) {
-		case "username":
+		
+		if(type=="username") {
 			String nickname = (String) session.getUserProperties().get("username");	
 			if(nickname==null) {
 				session.getUserProperties().put("username", message.getContext());
 				sendAllalert(session,"입장");
 				sendAllSessionToList();
 			}
-			break;
-		case "send":
+		}else if(type=="send") {
 			sendAllSessionToMessage(session,message);
-			break;
-		default:
-			break;
 		}
+
 	}
 
 	private void sendAllSessionToMessage(Session self,ChatMessage message) {
