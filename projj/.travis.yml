@@ -4,4 +4,5 @@ jdk:
 branches:
   only:
     - alwaysUpdatePlz
-script: "mvn test"
+script: "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+	mvn test"
