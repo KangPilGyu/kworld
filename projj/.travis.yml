@@ -1,1 +1,10 @@
 ﻿language: java
+
+jdk:
+  - openjdk8
+
+branches:
+  only:
+    - alwaysUpdatePlz
+
+script: "mvn test"
