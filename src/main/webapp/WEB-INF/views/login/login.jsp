@@ -143,10 +143,10 @@
 	      						onclick="openWindows('${google_url}')" type="button">
                                 <i style="float: left"class="fab fa-google" aria-hidden="true"></i>구글 로그인
            </button>
-           	<button id="btnJoinFacebook" class="btn btn-lg btn-primary btn-block"
+           <%-- 	<button id="btnJoinFacebook" class="btn btn-lg btn-primary btn-block"
 	      				 onclick="openWindows('${facebook_url}')" type="button"> 
                                 <i style="float: left"class="fab fa-facebook" aria-hidden="true"></i>페이스북 로그인
-           </button>
+           </button> --%>
              	<button id="btnJoinNaver" class="btn btn-lg btn-success btn-block"
 	      				 onclick="openWindows('${naver_url}')" type="button"> 
                                 <i style="float: left"class="fab fa-neos" aria-hidden="true"></i>네이버 로그인

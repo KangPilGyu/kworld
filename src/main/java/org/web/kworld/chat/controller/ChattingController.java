@@ -3,6 +3,7 @@ package org.web.kworld.chat.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EmptyStackException;
 import java.util.List;
 
 import javax.json.Json;
@@ -88,11 +89,9 @@ public class ChattingController {
 			if(!self.getId().equals(session.getId())) {
 				try {
 					session.getBasicRemote().sendObject(message);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
-				} catch (EncodeException e) {
-					e.printStackTrace();
-				}
+				} 
 			}
 		}
 	}
