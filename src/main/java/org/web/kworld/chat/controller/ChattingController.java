@@ -91,7 +91,7 @@ public class ChattingController {
 					session.getBasicRemote().sendObject(message);
 				} catch (Exception e) {
 					e.printStackTrace();
-				} 
+				}  
 			}
 		}
 	}
