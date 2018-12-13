@@ -7,7 +7,7 @@
 <tiles:insertAttribute name="common"/>
 <script src="${pageContext.request.contextPath}/resources/js/coverid.js"></script>
 
-<title>Insert title here</title>
+<title>Kworld</title>
 </head>
 <body style="background:url('/resources/images/back.webp'); background-position:center; background-repeat: no-repeat;  background-size: cover;">
 

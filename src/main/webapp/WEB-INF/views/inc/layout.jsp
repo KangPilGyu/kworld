@@ -6,7 +6,7 @@
 <head>
 <tiles:insertAttribute name="common"/>
 <script src="/resources/js/snowfall.jquery.js" type="text/javascript"></script>
-<title>Insert title here</title>
+<title>Kworld</title>
 </head>
 <body  style="background:url('/resources/images/tree.jpg'); width: 100%; background-position: center">
 <!-- header  (nav bar)-->
