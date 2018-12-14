@@ -18,7 +18,7 @@
         <img src="/resources/images/christmas.jpg" style="height: 500px" alt="Image">
         <div class="carousel-caption">
           <h3>Merry ChristMas</h3>
-          <p>Hi</p>
+          <p>Hi Kworld</p>
         </div>      
       </div>
 
