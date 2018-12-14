@@ -1,10 +1,10 @@
-version: 0.0
+ï»¿version: 0.0
 os: linux
 files:
   - source:  /
     destination: /home/ubuntu/app/travis/build/
 
 hooks:
-  AfterInstall: # ¹èÆ÷°¡ ³¡³ª¸é ¾Æ·¡ ¸í·É¾î¸¦ ½ÇÇà
+  AfterInstall: # ë°°í¬ê°€ ëë‚˜ë©´ ì•„ë˜ ëª…ë ¹ì–´ë¥¼ ì‹¤í–‰
     - location: build.sh
       timeout: 180
