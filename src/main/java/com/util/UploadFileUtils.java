@@ -23,9 +23,11 @@ public class UploadFileUtils {
 		
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString()+"_"+originalName;
-		String savedPath = calcPath(uploadPath);		
+		String savedPath = calcPath(uploadPath);	
+		
 		File target = new File(uploadPath+savedPath, savedName);
 		FileCopyUtils.copy(fileData, target);
+		
 		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
 		String uploadedFileName=null;
 		
