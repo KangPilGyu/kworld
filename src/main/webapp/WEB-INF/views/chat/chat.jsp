@@ -128,7 +128,8 @@ $(document).ready(function(){
             }
             
             //웹소켓 객체 만드는 코드
-            ws=new WebSocket("ws://localhost/echo");
+            var 
+            ws=new WebSocket("ws://${pageContext.request.contextPath}/echo");
             
             
             ws.onopen=function(){
