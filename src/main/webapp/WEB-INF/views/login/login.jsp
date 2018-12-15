@@ -31,11 +31,10 @@
 	    return "";
 	}
  function snsSubmit(){
-	 alert("콜됨");
+	// alert($("#snsemail").val() +" " + $("#snspwd").val() );
 	 $("#snsform").attr("action","/j_spring_security_check");
 	 $("#snsform").attr("method","post");
 	 $("#snsform").submit();
-	 alert("실행됨");
  }
  
  $(document).ready(function(){

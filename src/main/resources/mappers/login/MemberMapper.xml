@@ -65,6 +65,12 @@
 	where m_email = #{m_email}
 	</select>
 	
+	<select id="selectFindMember" resultType="org.web.kworld.login.vo.MemberVO">
+	select * 
+	from tbl_member
+	where m_email = #{m_email} 
+	</select>
+	
 	<update id="updateSNS">
 	update tbl_member 
 	set m_type = #{m_type},

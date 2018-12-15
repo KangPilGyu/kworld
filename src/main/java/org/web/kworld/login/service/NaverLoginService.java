@@ -3,10 +3,14 @@ package org.web.kworld.login.service;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.simple.JSONObject;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.web.kworld.login.vo.MemberVO;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -18,10 +22,14 @@ import com.util.NaverLoginApi;
 
 @Service
 public class NaverLoginService {
-	    
+		@Inject
+		private BCryptPasswordEncoder passwordEncoder;
+		@Inject
+		private LoginMemberService loginMemberService;
+	
 		private final static String CLIENT_ID = "aKGmFpzAKX32qhB0mLwx";
 		private final static String CLIENT_SECRET = "cAFJErLkLw";
-		private final static String REDIRECT_URI = "http://localhost/kworld/login/naver";
+		private final static String REDIRECT_URI = "http://localhost/login/naver";
 		private final static String SESSION_STATE = "oauth_state";
 		/* 프로필 조회 API URL */
 		private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
@@ -93,6 +101,25 @@ public class NaverLoginService {
 		/* http session에서 데이터 가져오기 */	
 		private String getSession(HttpSession session){
 			return (String) session.getAttribute(SESSION_STATE);
+		}
+		
+		public String getUserProfile(JSONObject jsonObject) {
+			
+			 MemberVO member= new MemberVO();
+		        member.setM_token(oauthToken.getAccessToken());
+		        member.setM_email((String)jsonObject.get("email"));
+		        member.setM_name((String)jsonObject.get("name"));
+		        member.setM_auth("USER");
+		        member.setM_type("네이버");
+						
+			if(loginMemberService.hasEmail(member.getM_email())) {
+				loginMemberService.updateSNS(member);
+				member=loginMemberService.selectSNSMember(member.getM_email());
+			}else {
+				member.setM_pwd(passwordEncoder.encode(member.getM_token()));
+	        	loginMemberService.insertSNSMember(member); 
+			}
+			return member.getM_email();
 		}
 	
     

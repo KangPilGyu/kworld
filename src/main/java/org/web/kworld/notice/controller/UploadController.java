@@ -30,7 +30,7 @@ public class UploadController {
    private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
    
 
-   private String uploadPath="C:\\Temp\\Kworld";
+   private String uploadPath="/home/ubuntu/app/file";
    
    @RequestMapping(value="/uploadForm", method=RequestMethod.GET)
    public void uploadForm() {

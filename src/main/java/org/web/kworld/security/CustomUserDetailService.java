@@ -31,8 +31,9 @@ public class CustomUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		 MemberVO member=null;
+		String m_email = username; 
 		try {
-			member = sqlSession.selectOne(NAMESPACE+".selectSNSMember",username);
+			member = sqlSession.selectOne(NAMESPACE+".selectSNSMember",m_email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

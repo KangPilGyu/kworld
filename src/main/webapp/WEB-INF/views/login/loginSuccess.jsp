@@ -3,9 +3,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	$("#snsemail",opener.document).val("${member.m_email}");
-	$("#snspwd",opener.document).val("1q2w3e4r!");
+	//alert("${member.m_email} ${member.m_pwd}");
+/* 	$("#snsemail",opener.document).val("${member.m_email}");
+	$("#snspwd",opener.document).val("${member.m_pwd}"); */
 	window.close();
-	opener.parent.snsSubmit();
+	opener.location.href="/";
 
 </script>

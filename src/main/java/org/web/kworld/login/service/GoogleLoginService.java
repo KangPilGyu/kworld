@@ -8,6 +8,11 @@ import java.net.URL;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.api.impl.GoogleTemplate;
@@ -20,6 +25,7 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
 import org.web.kworld.login.vo.MemberVO;
+import org.web.kworld.security.CustomUserDetailService;
 
 @Service
 public class GoogleLoginService {
@@ -29,6 +35,8 @@ public class GoogleLoginService {
 	
 	@Inject
 	private LoginMemberService loginMemberService;
+	
+	
 	
     private GoogleConnectionFactory googleConnectionFactory;
     private OAuth2Parameters googleOAuth2Parameters;
@@ -71,7 +79,7 @@ public class GoogleLoginService {
          this.accessToken=accessToken;
          
     }
-    public MemberVO getUserProfile() {	
+    public String getUserProfile() {	
     	 // oauth 사용한 api 사용
         org.springframework.social.connect.Connection<Google> connection = googleConnectionFactory.createConnection(this.accessGrant);
         Google google = connection == null ? new GoogleTemplate(this.accessToken) : connection.getApi();
@@ -83,19 +91,21 @@ public class GoogleLoginService {
         member.setM_token(accessToken);
         member.setM_email(profile.getAccountEmail());
         member.setM_name(profile.getDisplayName());
-        member.setM_type("구글");
         member.setM_auth("USER");
-        member.setM_pwd(passwordEncoder.encode(accessToken));
+        member.setM_type("구글");
         
+        //99999999999999999990000000009999999888888888888888888
         if(loginMemberService.hasEmail(member.getM_email())) {
+        	// 토큰 & type &  auth Update
         	loginMemberService.updateSNS(member);
+        	// 기존 member 가져오기
         	member=loginMemberService.selectSNSMember(member.getM_email());
         }else {
+        	// 신규......................
+        	member.setM_pwd(passwordEncoder.encode(accessToken));
         	loginMemberService.insertSNSMember(member); 
-        	member.setM_pwd(accessToken);
         }
-        
-        return member;
+        return member.getM_email();
    }
     
     public void closeToken() {
@@ -118,6 +128,14 @@ public class GoogleLoginService {
              e.printStackTrace();
          }
     }
+/*	public void authSecurity() {
+	      	UserDetails ckUserDetails = new CustomUserDetailService().loadUserByUsername("USER_ID");
+	        Authentication authentication = new UsernamePasswordAuthenticationToken(ckUserDetails, "USER_PASSWORD", ckUserDetails.getAuthorities());
+	     
+	        SecurityContext securityContext = SecurityContextHolder.getContext();
+	        securityContext.setAuthentication(authentication);
+		
+	}*/
     
     
 }
