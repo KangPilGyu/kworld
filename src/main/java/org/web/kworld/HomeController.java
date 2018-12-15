@@ -29,5 +29,10 @@ public class HomeController {
 		
 		return "main.default";
 	}
+	@RequestMapping(value = "/google6cf5c0ee8e17d765.html", method = RequestMethod.GET)
+	public String googleAuth(Locale locale, Model model,HttpServletRequest request) {
+		
+		return "google6cf5c0ee8e17d765.html";
+	}
 	
 }
