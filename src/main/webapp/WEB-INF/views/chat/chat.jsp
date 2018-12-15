@@ -134,7 +134,7 @@ $(document).ready(function(){
             
             ws.onopen=function(){
               	//닉네임 전송...
-            	var jmsg={
+            	var jmsg={ 
               			type:"username",
               			context: $("#sender").val(),
               			id:"username",
