@@ -161,7 +161,7 @@ $(document).ready(function(){
             	
             };
             ws.onclose=function(event){
-                writeResponse("Connection closed");
+                closeSocket();
             }
             
         }
