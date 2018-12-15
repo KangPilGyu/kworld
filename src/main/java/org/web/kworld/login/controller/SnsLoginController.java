@@ -82,6 +82,7 @@ public class SnsLoginController {
     	
     	googleLoginService.makeAccessToken(code);
         String m_email = googleLoginService.getUserProfile();
+        
         // security 로그인 처리
         securityLogin(m_email, request);
         
