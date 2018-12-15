@@ -16,7 +16,7 @@
 
    ![개발환경](https://github.com/KangPilGyu/kworld/blob/alwaysUpdatePlz/%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD.png)
 
-   ![시스템구성](C:\Users\eiffe\OneDrive\Desktop\시스템구성.png)
+   ![시스템구성](https://github.com/KangPilGyu/kworld/blob/alwaysUpdatePlz/%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B5%AC%EC%84%B1.png)
 
 3. #### 사용언어 / 기술
 
