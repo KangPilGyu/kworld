@@ -128,7 +128,7 @@ $(document).ready(function(){
             }
             
             //웹소켓 객체 만드는 코드
-            var 
+            
             ws=new WebSocket("ws://ec2-13-125-236-106.ap-northeast-2.compute.amazonaws.com/echo");
             
             
