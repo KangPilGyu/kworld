@@ -27,9 +27,10 @@ public class NaverLoginService {
 		@Inject
 		private LoginMemberService loginMemberService;
 	
+		
 		private final static String CLIENT_ID = "aKGmFpzAKX32qhB0mLwx";
 		private final static String CLIENT_SECRET = "cAFJErLkLw";
-		private final static String REDIRECT_URI = "http://ec2-13-125-236-106.ap-northeast-2.compute.amazonaws.com/login/naver";
+		private final static String REDIRECT_URI = "http://ec2-54-180-121-186.ap-northeast-2.compute.amazonaws.com/login/naver";
 		private final static String SESSION_STATE = "oauth_state";
 		/* 프로필 조회 API URL */
 		private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
