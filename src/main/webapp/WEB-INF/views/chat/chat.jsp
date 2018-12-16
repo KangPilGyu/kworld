@@ -129,7 +129,7 @@ $(document).ready(function(){
             
             //웹소켓 객체 만드는 코드
             
-            ws=new WebSocket("ws://freekworld.com/echo");
+            ws=new WebSocket("ws://www.freekworld.com/echo");
                          
             ws.onopen=function(){
               	//닉네임 전송...

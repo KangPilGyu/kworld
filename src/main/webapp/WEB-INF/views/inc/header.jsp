@@ -38,7 +38,7 @@ $(document).ready(function(){
         <li><a href="/">Home</a></li>
         <li><a href="/chat">Chat</a></li>
         <li><a href="/notice/main">Notice</a></li>
-        <li><a href="${pageContext.request.contextPath}/board/">Board</a></li>
+        <%-- <li><a href="${pageContext.request.contextPath}/board/">Board</a></li> --%>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <sec:authorize access="isAuthenticated()">

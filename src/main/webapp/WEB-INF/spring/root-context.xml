@@ -10,6 +10,9 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dns" class="java.lang.String" >
+		<constructor-arg value="www.freekworld.com"></constructor-arg>
+	</bean>
 	
 	<!-- dataSource -->
 	<util:properties id="dataSourceConfig" location="classpath:/properties/dataSource.properties" />
