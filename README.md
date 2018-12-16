@@ -2,7 +2,7 @@
 
    Study용 개인 웹 프로젝트 ( 기능 추가 중 )
 
-   주소 : http://ec2-13-125-236-106.ap-northeast-2.compute.amazonaws.com/
+   주소 : http://ec2-54-180-121-186.ap-northeast-2.compute.amazonaws.com/
 
 2. #### 개발환경
 
