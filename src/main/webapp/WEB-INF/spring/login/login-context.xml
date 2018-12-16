@@ -13,7 +13,7 @@
  
 	<bean id = "googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
 		<property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"></property>
-		<property name="redirectUri" value="http://freekworld.com/login/google"/> 
+		<property name="redirectUri" value="http://www.freekworld.com/login/google"/> 
 	</bean>
 
 	<!-- FaceBook 소셜 로그인 연결 설정 -->
